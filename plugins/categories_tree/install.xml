@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="categories_tree">
+    <title>Category Tree</title>
+    <description>Transforms default category boxes to a category tree</description>
+    <author>John Freeman</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>2.1.2</version>
+    <date>11.11.2013</date>
+    <compatible>4.5.2</compatible>
+    <class>CategoryTree</class>
+
+    <files>
+        <file>admin/settings.tpl</file>
+        <file>static/style.css</file>
+        <file>block.tpl</file>
+        <file>header.tpl</file>
+        <file>level.tpl</file>
+        <file>rlCategoryTree.class.php</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('CategoryTree', null, 'categories_tree');
+        $GLOBALS['rlCategoryTree']->install();
+    ]]></install>
+
+    <hooks>
+        <hook name="specialBlock" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="browseBCArea" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apPhpListingTypesPost" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apPhpListingTypesBeforeAdd" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apPhpListingTypesBeforeEdit" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apTplListingTypesFormCategoryAddBlock" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="tplHeader" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="browseMiddle" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="categoriesListingsIncrease" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="categoriesListingsDecrease" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apPhpCategoriesAfterAdd" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apPhpCategoriesAfterEdit" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="staticDataRegister" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="ajaxRequest" version="2.1.1"><![CDATA[]]></hook>
+        <hook name="apExtPluginsUpdate" version="2.1.2"><![CDATA[]]></hook>
+    </hooks>
+
+    <phrases>
+        <phrase key="category_tree_show_subcategories" module="common"><![CDATA[Show subcategories]]></phrase>
+        <phrase key="category_tree_go_back" module="common"><![CDATA[Go back to Top Level]]></phrase>
+        <phrase key="category_tree_tree_options" module="admin"><![CDATA[Category Tree Plugin]]></phrase>
+        <phrase key="category_tree_show_subcat_counter" module="admin"><![CDATA[Show subcategory counters]]></phrase>
+        <phrase key="category_tree_open_subcat" module="admin"><![CDATA[Open first level subcategories by default]]></phrase>
+        <phrase key="category_tree_show_child_only" module="admin" version="2.1.0"><![CDATA[Show subcategories only and hide parent categories when selected]]></phrase>
+        <phrase key="category_tree_get_cats_notify_fail" module="frontEnd" version="2.1.0"><![CDATA[Failed to load the categories; please contact Flynax helpdesk.]]></phrase>
+    </phrases>
+
+    <updates>
+        <update version="2.0.1" files="block.tpl,level.tpl,rlCategoryTree.class.php"><![CDATA[]]></update>
+        <update version="2.0.2" files="block.tpl,rlCategoryTree.class.php"><![CDATA[]]></update>
+        <update version="2.1.0" files="admin/.htaccess,admin/settings.tpl,static/.htaccess,static/style.css,.htaccess,block.tpl,header.tpl,level.tpl,rlCategoryTree.class.php"><![CDATA[
+            $GLOBALS['rlDb']->query("
+                UPDATE `" . RL_DBPREFIX . "listing_types` SET 
+                `Ablock_visible_number` = '0',
+                `Ablock_show_subcats` = '1',
+                `Ablock_subcat_number` = '0',
+                `Ablock_scrolling` = '1'
+            ");
+        ]]></update>
+        <update version="2.1.1" files="admin/.htaccess,static/.htaccess,.htaccess,rlCategoryTree.class.php"><![CDATA[]]></update>
+        <update version="2.1.2" files="block.tpl,level.tpl,rlCategoryTree.class.php,static/style.css"><![CDATA[]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('CategoryTree', null, 'categories_tree');
+        $GLOBALS['rlCategoryTree']->uninstall();
+    ]]></uninstall>
+</plugin>

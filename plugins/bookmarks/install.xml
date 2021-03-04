@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="bookmarks">
+    <title>Bookmarks and Share</title>
+    <description>Adds social bookmark buttons and allows users to share listings in networks</description>
+    <author>John Freeman</author>
+    <owner>Flynax classifieds software</owner>
+    <version>4.0.0</version>
+    <date>14.05.2012</date>
+    <controller>bookmarks</controller>
+    <class>Bookmarks</class>
+    <compatible>4.5.2</compatible>
+
+    <files>
+        <file>inline.tpl</file>
+        <file>floating_bar.tpl</file>
+        <file>fb_box.tpl</file>
+        <file>twitter_timeline.tpl</file>
+        <file>services.json</file>
+        <file>rlBookmarks.class.php</file>
+        <file>rlBookmarksAdmin.class.php</file>
+        <file>admin/bookmarks.inc.php</file>
+        <file>admin/bookmarks.tpl</file>
+        <file>static/style-admin.css</file>
+        <file>static/inline.png</file>
+        <file>static/floating-bar.png</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('Bookmarks', null, 'bookmarks');
+        $GLOBALS['rlBookmarks']->install();
+    ]]></install>
+
+    <hooks>
+        <hook version="4.0.0" name="tplHeader"><![CDATA[]]></hook>
+        <hook version="4.0.0" name="specialBlock"><![CDATA[]]></hook>
+        <hook version="4.0.0" class="BookmarksAdmin" name="apAjaxRequest"><![CDATA[]]></hook>
+        <hook version="4.0.0" class="BookmarksAdmin" name="apExtBlocksSql"><![CDATA[]]></hook>
+        <hook version="4.0.0" class="BookmarksAdmin" name="apExtBlocksData"><![CDATA[]]></hook>
+        <hook version="4.0.0" class="BookmarksAdmin" name="apTplBlocksGrid"><![CDATA[]]></hook>
+        <hook version="4.0.0" class="BookmarksAdmin" name="apTplBlocksBottom"><![CDATA[]]></hook>
+    </hooks>
+
+    <configs key="bookmarks_config" name="Bookmarks">
+        <![CDATA[]]>
+        <config key="bookmarks_addthis_divider" name="AddThis Analytics" type="divider"><![CDATA[]]></config>
+        <config version="4.0.0" key="bookmarks_addthis_id" name="AddThis API ID" description="Make sure the sharing tools are disabled for the corresponding Add This profile" type="text" ><![CDATA[]]></config>
+        <config key="bookmarks_fb_box_divider" name="Facebook Fans Box" type="divider"><![CDATA[]]></config>
+        <config key="bookmarks_fb_box_appid" name="Facebook APP ID" type="text"><![CDATA[]]></config>
+        <config key="bookmarks_fb_box_url" name="Facebook Page URL" type="text"><![CDATA[https://www.facebook.com/YOUR_NAME]]></config>
+        <config version="4.0.0" key="bookmarks_fb_box_height" name="Box Height" type="text" description="pixels, set '0' to use automatic height" validate="int"><![CDATA[0]]></config>
+        <config key="bookmarks_fb_box_faces" name="Show Faces" type="bool"><![CDATA[1]]></config>
+        <config key="bookmarks_fb_box_stream" name="Show Timeline" type="bool"><![CDATA[1]]></config>
+        <config key="bookmarks_fb_box_header" name="Small Header" type="bool"><![CDATA[1]]></config>
+        <config version="3.1.0" key="bookmarks_twitter_box_divider" name="Twitter Timeline Widget" type="divider"><![CDATA[]]></config>
+        <config version="3.1.0" key="bookmarks_twitter_box_username" name="Twitter Username" type="text"><![CDATA[]]></config>
+        <config version="3.1.4" key="bookmarks_twitter_box_height" name="Widget Height" type="text" validate="int"><![CDATA[500]]></config>
+    </configs>
+
+    <phrases>
+        <phrase key="bookmarks_share" module="common"><![CDATA[Share]]></phrase>
+        <phrase key="bsh_add_block" module="admin"><![CDATA[Add Bookmark]]></phrase>
+        <phrase key="bsh_bookmark_type" module="admin"><![CDATA[Share Buttons Type]]></phrase>
+        <phrase key="bsh_add_bookmark_block" module="admin"><![CDATA[Add Bookmark Block]]></phrase>
+        <phrase key="bsh_edit_bookmark_block" module="admin"><![CDATA[Edit Bookmark Block]]></phrase>
+        <phrase key="bookmark_left" module="admin"><![CDATA[Left]]></phrase>
+        <phrase key="bookmark_center" module="admin"><![CDATA[Center]]></phrase>
+        <phrase key="bookmark_right" module="admin"><![CDATA[Right]]></phrase>
+        <phrase key="bookmarks_align" module="admin"><![CDATA[Align in the box]]></phrase>
+        <phrase key="bsh_block_added" module="admin"><![CDATA[New share tool box has been successfully added.]]></phrase>
+        <phrase key="bsh_block_edited" module="admin"><![CDATA[Share tool box has been successfully edited.]]></phrase>
+        <phrase key="bookmarks_ext_caption" module="ext"><![CDATA[Share tool manager]]></phrase>
+        <phrase version="4.0.0" key="bsh_floating_bar" module="admin"><![CDATA[Floating bar]]></phrase>
+        <phrase version="4.0.0" key="bsh_inline" module="admin"><![CDATA[Inline box]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_button_size" module="admin"><![CDATA[Button size]]></phrase>
+        <phrase version="4.0.0" key="bookmark_mode_large" module="admin"><![CDATA[Large]]></phrase>
+        <phrase version="4.0.0" key="bookmark_mode_medium" module="admin"><![CDATA[Medium]]></phrase>
+        <phrase version="4.0.0" key="bookmark_mode_small" module="admin"><![CDATA[Small]]></phrase>
+        <phrase key="bookmarks_fb_box_deny" module="frontEnd"><![CDATA[Facebook Box disabled, please configure it from the Admin Panel]]></phrase>
+        <phrase version="3.1.0" key="bookmarks_twitter_box_deny" module="frontEnd"><![CDATA[Twitter Box disabled, please configure it from the Admin Panel]]></phrase>
+        <phrase version="3.1.0" key="bookmarks_twitter_tweets_by" module="frontEnd"><![CDATA[Tweets by]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_social_networks" module="admin"><![CDATA[Social networks]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_services_automatic" module="admin"><![CDATA[Automatic (Recommended)]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_services_automatic_number" module="admin"><![CDATA[Number of buttons]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_services_custom" module="admin"><![CDATA[Select your own]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_available_services" module="admin"><![CDATA[Available services]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_selected_services" module="admin"><![CDATA[Selected services]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_theme" module="admin"><![CDATA[Theme]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_theme_light" module="admin"><![CDATA[Light]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_theme_dark" module="admin"><![CDATA[Dark]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_theme_gray" module="admin"><![CDATA[Gray]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_theme_transparent" module="admin"><![CDATA[Transparent]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_box_options" module="admin"><![CDATA[Box Options]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_no_services_error" module="admin"><![CDATA[Please add at least one social network from "Available" to the "Selected" service section.]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_button_size_hint" module="admin"><![CDATA[Available in the mobile mode only]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_type" module="admin"><![CDATA[Share count type]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_each" module="admin"><![CDATA[Individual]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_one" module="admin"><![CDATA[Total]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_both" module="admin"><![CDATA[Individual & Total]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_none" module="admin"><![CDATA[None]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_floating_bar_duplicate" module="admin"><![CDATA[You can have only one floating bar on the page. You may select another page, or edit the current one.]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_style" module="admin"><![CDATA[Share button style]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_style_responsive" module="admin"><![CDATA[Responsive]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_style_fixed" module="admin"><![CDATA[Fixed]]></phrase>
+        <phrase version="4.0.0" key="bookmarks_share_style_original" module="admin"><![CDATA[Original]]></phrase>
+    </phrases>
+
+    <blocks>
+        <block key="bookmark_floating_bar_1" name="Follow Us" side="bottom" type="smarty" tpl="0" header="0"><![CDATA[
+            {include file=$smarty.const.RL_PLUGINS|cat:$smarty.const.RL_DS|cat:"bookmarks"|cat:$smarty.const.RL_DS|cat:"floating_bar.tpl" service_type="automatic" services="5" button_size="medium" share_type="one" theme="transparent"}
+        ]]></block>
+        <block key="bookmark_fb_box" name="Facebook Fans" side="left" type="smarty" tpl="1"><![CDATA[
+            {include file=$smarty.const.RL_PLUGINS|cat:$smarty.const.RL_DS|cat:"bookmarks"|cat:$smarty.const.RL_DS|cat:"fb_box.tpl"}
+        ]]></block>
+        <block version="3.1.0" key="bookmark_twitter_timeline" name="Twitter Timeline" side="left" type="smarty" tpl="1" header="0"><![CDATA[
+            {include file=$smarty.const.RL_PLUGINS|cat:$smarty.const.RL_DS|cat:"bookmarks"|cat:$smarty.const.RL_DS|cat:"twitter_timeline.tpl"}
+        ]]></block>
+    </blocks>
+
+    <updates>
+        <update version="3.0.1" files="fb_box.tpl,static/style.css"><![CDATA[]]></update>
+        <update version="3.0.2" files="admin/bookmarks.inc.php,admin/bookmarks.tpl"><![CDATA[
+            global $rlDb;
+            $sql = "UPDATE `".RL_DBPREFIX."blocks` SET `Key` = CONCAT('bookmark_', `Key`) WHERE `Plugin` = 'bookmarks' AND `Key` <> 'bookmark_fb_box'";
+
+            $rlDb -> query($sql);
+        ]]></update>
+        <update version="3.0.3" files="admin/bookmarks.inc.php,admin/bookmarks.tpl,buttons.tpl,rlBookmarks.class.php"><![CDATA[]]></update>
+        <update version="3.0.4" files="admin/bookmarks.inc.php"><![CDATA[]]></update>
+        <update version="3.0.5" files="admin/bookmarks.inc.php,admin/bookmarks.tpl"><![CDATA[]]></update>
+        <update version="3.0.6" files="rlBookmarks.class.php"><![CDATA[]]></update>
+        <update version="3.0.7" files="fb_box.tpl"><![CDATA[]]></update>
+        <update version="3.0.8" files="fb_box.tpl"><![CDATA[]]></update>
+        <update version="3.1.0" files="rlBookmarks.class.php,twitter_timeline.tpl,libs/tmhOAuth.php"><![CDATA[]]></update>
+        <update version="3.1.1" files="rlBookmarks.class.php,libs/cacert.pem"><![CDATA[]]></update>
+        <update version="3.1.2" files="rlBookmarks.class.php,fb_box.tpl"><![CDATA[]]></update>
+        <update version="3.1.3"><![CDATA[]]></update>
+        <update version="3.1.4" files="twitter_timeline.tpl"><![CDATA[
+            $GLOBALS['rlDb']->query('DELETE FROM `' . RL_DBPREFIX . "config` WHERE `Key` = 'bookmarks_twitter_box_widgetid'");
+            $GLOBALS['rlDb']->query('DELETE FROM `' . RL_DBPREFIX . "lang_keys` WHERE `Key` = 'config+name+bookmarks_twitter_box_widgetid'");
+        ]]></update>
+        <update version="3.1.5" files="rlBookmarks.class.php,static/style.css,admin/bookmarks.inc.php"><![CDATA[]]></update>
+        <update version="4.0.0" files="inline.tpl,floating_bar.tpl,fb_box.tpl,twitter_timeline.tpl,services.json,rlBookmarks.class.php,rlBookmarksAdmin.class.php,admin/bookmarks.inc.php,admin/bookmarks.tpl,static/style-admin.css,static/inline.png,static/floating-bar.png,static/icons/100zakladok.svg,static/icons/500px.svg,static/icons/aboutme.svg,static/icons/addressbar.svg,static/icons/addthis.svg,static/icons/adfty.svg,static/icons/adifni.svg,static/icons/advqr.svg,static/icons/aim.svg,static/icons/amazonsmile.svg,static/icons/amazonwishlist.svg,static/icons/amenme.svg,static/icons/aolmail.svg,static/icons/apsense.svg,static/icons/atavi.svg,static/icons/baidu.svg,static/icons/balatarin.svg,static/icons/bandcamp.svg,static/icons/beat100.svg,static/icons/behance.svg,static/icons/bitbucket.svg,static/icons/bitly.svg,static/icons/bizsugar.svg,static/icons/bland.svg,static/icons/blogger.svg,static/icons/blogkeen.svg,static/icons/blogmarks.svg,static/icons/bobrdobr.svg,static/icons/bonzobox.svg,static/icons/bookmarkycz.svg,static/icons/bookmerkende.svg,static/icons/box.svg,static/icons/buffer.svg,static/icons/camyoo.svg,static/icons/care2.svg,static/icons/cashme.svg,static/icons/citeulike.svg,static/icons/cleanprint.svg,static/icons/cleansave.svg,static/icons/cloob.svg,static/icons/cosmiq.svg,static/icons/cssbased.svg,static/icons/deviantart.svg,static/icons/diary_ru.svg,static/icons/digg.svg,static/icons/diggita.svg,static/icons/diigo.svg,static/icons/disqus.svg,static/icons/domaintoolswhois.svg,static/icons/douban.svg,static/icons/draugiem.svg,static/icons/dribbble.svg,static/icons/edcast.svg,static/icons/ello.svg,static/icons/email.svg,static/icons/etsy.svg,static/icons/evernote.svg,static/icons/exchangle.svg,static/icons/fabulously40.svg,static/icons/facebook.svg,static/icons/facenama.svg,static/icons/fashiolista.svg,static/icons/favable.svg,static/icons/faves.svg,static/icons/favoritus.svg,static/icons/financialjuice.svg,static/icons/flickr.svg,static/icons/flipboard.svg,static/icons/folkd.svg,static/icons/foursquare.svg,static/icons/gg.svg,static/icons/github.svg,static/icons/gitlab.svg,static/icons/gmail.svg,static/icons/goodreads.svg,static/icons/google.svg,static/icons/google_classroom.svg,static/icons/google_plusone_share.svg,static/icons/googletranslate.svg,static/icons/govn.svg,static/icons/hackernews.svg,static/icons/hatena.svg,static/icons/hedgehogs.svg,static/icons/historious.svg,static/icons/hootsuite.svg,static/icons/hotmail.svg,static/icons/houzz.svg,static/icons/indexor.svg,static/icons/informazione.svg,static/icons/instagram.svg,static/icons/instapaper.svg,static/icons/internetarchive.svg,static/icons/iorbix.svg,static/icons/jappy.svg,static/icons/jsfiddle.svg,static/icons/kaixin.svg,static/icons/kakao.svg,static/icons/kakaotalk.svg,static/icons/ketnooi.svg,static/icons/kindleit.svg,static/icons/kledy.svg,static/icons/letterboxd.svg,static/icons/lidar.svg,static/icons/lineme.svg,static/icons/link.svg,static/icons/linkedin.svg,static/icons/linkuj.svg,static/icons/livejournal.svg,static/icons/mailto.svg,static/icons/margarin.svg,static/icons/markme.svg,static/icons/medium.svg,static/icons/meetvibe.svg,static/icons/meinvz.svg,static/icons/memonic.svg,static/icons/memori.svg,static/icons/mendeley.svg,static/icons/meneame.svg,static/icons/messenger.svg,static/icons/mixcloud.svg,static/icons/mixi.svg,static/icons/moemesto.svg,static/icons/mrcnetworkit.svg,static/icons/mymailru.svg,static/icons/myspace.svg,static/icons/myvidster.svg,static/icons/n4g.svg,static/icons/naszaklasa.svg,static/icons/netvibes.svg,static/icons/netvouz.svg,static/icons/newsmeback.svg,static/icons/newsvine.svg,static/icons/nujij.svg,static/icons/nurses_lounge.svg,static/icons/odnoklassniki_ru.svg,static/icons/oknotizie.svg,static/icons/onenote.svg,static/icons/openthedoor.svg,static/icons/oyyla.svg,static/icons/pafnetde.svg,static/icons/patreon.svg,static/icons/paypalme.svg,static/icons/pdfmyurl.svg,static/icons/periscope.svg,static/icons/pinboard.svg,static/icons/pinterest.svg,static/icons/pinterest_share.svg,static/icons/plurk.svg,static/icons/pocket.svg,static/icons/posteezy.svg,static/icons/printfriendly.svg,static/icons/pusha.svg,static/icons/qrsrc.svg,static/icons/quantcast.svg,static/icons/quora.svg,static/icons/qzone.svg,static/icons/ravelry.svg,static/icons/reddit.svg,static/icons/rediff.svg,static/icons/renren.svg,static/icons/researchgate.svg,static/icons/retellity.svg,static/icons/rss.svg,static/icons/safelinking.svg,static/icons/scoopit.svg,static/icons/sharer.svg,static/icons/sinaweibo.svg,static/icons/skype.svg,static/icons/skyrock.svg,static/icons/slack.svg,static/icons/slashdot.svg,static/icons/slideshare.svg,static/icons/smiru.svg,static/icons/sms.svg,static/icons/snapchat.svg,static/icons/sodahead.svg,static/icons/soundcloud.svg,static/icons/spinsnap.svg,static/icons/spotify.svg,static/icons/stack_exchange.svg,static/icons/stack_overflow.svg,static/icons/startaid.svg,static/icons/startlap.svg,static/icons/steam.svg,static/icons/studivz.svg,static/icons/stuffpit.svg,static/icons/stumbleupon.svg,static/icons/stumpedia.svg,static/icons/stylishhome.svg,static/icons/supbro.svg,static/icons/surfingbird.svg,static/icons/svejo.svg,static/icons/symbaloo.svg,static/icons/taringa.svg,static/icons/technerd.svg,static/icons/telegram.svg,static/icons/tencentqq.svg,static/icons/tencentweibo.svg,static/icons/thefancy.svg,static/icons/thefreedictionary.svg,static/icons/thisnext.svg,static/icons/trello.svg,static/icons/tuenti.svg,static/icons/tumblr.svg,static/icons/twitch.svg,static/icons/twitter.svg,static/icons/typepad.svg,static/icons/untappd.svg,static/icons/urlaubswerkde.svg,static/icons/venmo.svg,static/icons/viadeo.svg,static/icons/viber.svg,static/icons/vimeo.svg,static/icons/vine.svg,static/icons/virb.svg,static/icons/visitezmonsite.svg,static/icons/vk.svg,static/icons/vkrugudruzei.svg,static/icons/voxopolis.svg,static/icons/vybralisme.svg,static/icons/w3validator.svg,static/icons/wanelo.svg,static/icons/wechat.svg,static/icons/weheartit.svg,static/icons/whatsapp.svg,static/icons/wishmindr.svg,static/icons/wordpress.svg,static/icons/wykop.svg,static/icons/xing.svg,static/icons/yahoomail.svg,static/icons/yammer.svg,static/icons/yelp.svg,static/icons/yookos.svg,static/icons/yoolink.svg,static/icons/yorumcuyum.svg,static/icons/youmob.svg,static/icons/youtube.svg,static/icons/yummly.svg,static/icons/yuuby.svg,static/icons/zakladoknet.svg,static/icons/ziczac.svg,static/icons/zingme.svg"><![CDATA[
+            global $rlDb, $reefless, $rlActions;
+
+            // Remove hooks
+            $hooks_to_be_removed = array(
+                'boot',
+                'afterListingDone',
+                'apPhpListingsAfterAdd',
+                'postPaymentComplete',
+            );
+            $rlDb->query("
+                DELETE FROM `" . RL_DBPREFIX . "hooks` 
+                WHERE `Plugin` = 'bookmarks' 
+                AND `Name` IN ('" . implode("','", $hooks_to_be_removed) . "')
+            ");
+
+            // Remove legacy config
+            $configs_to_be_removed = array(
+                'bookmarks_twitter_api',
+                'bookmarks_twitter_api_use_module',
+                'bookmarks_twitter_api_key',
+                'bookmarks_twitter_api_secret',
+                'bookmarks_twitter_token',
+                'bookmarks_twitter_token_secret',
+                'bookmarks_fb_box_color',
+                'bookmarks_fb_box_border',
+            );
+            $rlDb->query("
+                DELETE FROM `" . RL_DBPREFIX . "config`
+                WHERE `Plugin` = 'bookmarks' 
+                AND `Key` IN ('" . implode("','", $configs_to_be_removed) . "')
+            ");
+
+            // Remove phrases
+            $phrases = array(
+                'bookmarks_services',
+                'bsh_vertical_share_counter',
+                'bsh_horizontal_share_counter',
+                'bsh_tweet_like_share',
+                'bsh_googleplus_like_tweet',
+                'bsh_toolbox_facebook_like',
+                'bsh_32x32_icons_addthis',
+                'bsh_64x64_icons_aquaticus',
+                'bsh_css3_share_buttons',
+                'bsh_32x32_vertical_icons',
+                'bsh_vertical_layout_menu',
+                'bsh_wibiya_bar',
+                'bsh_share_button',
+                'bookmarks_color',
+                'bsh_ext_align',
+                'bsh_ext_left',
+                'bsh_ext_center',
+                'bsh_ext_right',
+                'bookmarks_view_mode',
+                'bsh_choose_another',
+                'bookmarks_display_mode',
+            );
+            $rlDb->query("
+                DELETE FROM `" . RL_DBPREFIX . "lang_keys` 
+                WHERE `Plugin` = 'bookmarks' 
+                AND `Key` IN ('" . implode("','", $phrases) . "')
+            ");
+
+            // Delete config names
+            $rlDb->query("
+                DELETE FROM `" . RL_DBPREFIX . "lang_keys` 
+                WHERE `Plugin` = 'bookmarks' 
+                AND `Key` IN ('config+name+" . implode("config+name+','", $configs_to_be_removed) . "')
+            ");
+
+            // Delete config description, if exists
+            $rlDb->query("
+                DELETE FROM `" . RL_DBPREFIX . "lang_keys` 
+                WHERE `Plugin` = 'bookmarks' 
+                AND `Key` IN ('config+des+" . implode("config+des+','", $configs_to_be_removed) . "')
+            ");
+
+            // Manage DB fields
+            $rlDb->query("ALTER TABLE `" . RL_DBPREFIX . "bookmarks` DROP `Status`");
+
+            $rlDb->query("
+                ALTER TABLE `" . RL_DBPREFIX . "bookmarks` 
+                CHANGE `Color` `Theme` 
+                ENUM('light','dark','gray','transparent') 
+                CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'transparent'
+            ");
+
+            $rlDb->query("
+                ALTER TABLE `" . RL_DBPREFIX . "bookmarks` 
+                CHANGE `Type` `Type` 
+                ENUM('floating_bar','inline') 
+                CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'inline';
+            ");
+
+            $rlDb->query("
+                ALTER TABLE `" . RL_DBPREFIX . "bookmarks` 
+                ADD `Service_type` ENUM('automatic','custom') 
+                NOT NULL DEFAULT 'automatic' AFTER `Type`
+            ");
+
+            $rlDb->query("
+                ALTER TABLE `" . RL_DBPREFIX . "bookmarks` 
+                ADD `Share_type` ENUM('none','each','one','both') 
+                NOT NULL DEFAULT 'none' AFTER `View_mode`
+            ");
+
+            $rlDb->query("
+                ALTER TABLE `" . RL_DBPREFIX . "bookmarks` 
+                ADD `Share_style` ENUM('responsive','fixed','original')
+                NOT NULL DEFAULT 'responsive' AFTER `Share_type`
+            ");
+
+            // Remove useless files related to prev version
+            $files_to_be_removed = array(
+                'buttons.tpl',
+                'static/gallery.png',
+                'static/rtl.css',
+                'static/style.css',
+            );
+            $plugin_dir = RL_PLUGINS . 'bookmarks' . RL_DS;
+
+            foreach ($files_to_be_removed as $file) {
+                unlink($plugin_dir . str_replace('/', RL_DS, $file));
+            }
+
+            // Remove useless dirs
+            $reefless->deleteDirectory($plugin_dir . 'libs' . RL_DS);
+            $reefless->deleteDirectory($plugin_dir . 'examples' . RL_DS);
+
+            // Optimize block contents
+            $reefless->loadClass('BookmarksAdmin', null, 'bookmarks');
+
+            $rlDb->setTable('bookmarks');
+            foreach ($rlDb->fetch() as $block) {
+                $new_type = $block['Type'] == 'floating_bar' ? 'floating_bar' : 'inline';
+                $new_key = 'bookmark_' . $new_type . '_' . $block['ID'];
+                $update = array(
+                    'fields' => array(
+                        'Content' => $GLOBALS['rlBookmarksAdmin']->generateContent(
+                            $new_type,
+                            'automatic',
+                            5,
+                            $block['View_mode'],
+                            'none',
+                            'responsive',
+                            'transparent',
+                            $block['Align']
+                        ),
+                        'Key' => $new_key
+                    ),
+                    'where' => array(
+                        'Key' => 'bookmark_' . $block['Key']
+                    )
+                );
+                $rlActions->updateOne($update, 'blocks');
+
+                $update = array(
+                    'fields' => array(
+                        'Key' => 'blocks+name+' . $new_key
+                    ),
+                    'where' => array(
+                        'Key' => 'blocks+name+bookmark_' . $block['Key']
+                    )
+                );
+                $rlActions->updateOne($update, 'lang_keys');
+
+                $update = array(
+                    'fields' => array(
+                        'Key' => $new_key,
+                        'Type' => $new_type,
+                    ),
+                    'where' => array(
+                        'ID' => $block['ID']
+                    )
+                );
+                $rlActions->updateOne($update, 'bookmarks');
+            }
+        ]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('Bookmarks', null, 'bookmarks');
+        $GLOBALS['rlBookmarks']->uninstall();
+    ]]></uninstall>
+</plugin>

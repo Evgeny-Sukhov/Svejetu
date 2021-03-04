@@ -1,0 +1,34 @@
+.monetize.infinity span {
+    display: inline-block;
+    width: 25px;
+    height: 16px;
+}
+.monetize .numeric {
+    width: 50px;
+    text-align: center;
+}
+
+#credits-assign-block input.disabled {
+    cursor: not-allowed;
+}
+
+#credits-assign-block .assign-input {
+    width: 50px;
+    text-align: center;
+}
+
+#credits-assign-block .assign-label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#plans-reassign-block .assign-options {
+    margin: 5px 10px;
+}
+
+#plans-reassign-block .assign-options > li {
+    padding: 2px 0;
+}
+
+#plans-reassign-block .assign-main-block {
+    margin-top: 10px;
+}

@@ -1,0 +1,49 @@
+.smsActivation-box-confirm>div,
+.smsActivation-box-confirm>span {
+    display: inline;
+}
+.smsActivation-box-confirm>div>span#new_code {
+    cursor: pointer;
+}
+@media (max-width: 767px) {
+    .smsActivation-box-confirm>div,
+    .smsActivation-box-confirm>span {
+        display: block;
+        text-align: center;
+        margin-top: 5px;
+    }
+    .smsActivation-box-confirm>div:first-child {
+        display: inline-block;
+        width: 70%;
+        float: none!important;
+    }
+    .smsActivation-box-confirm>div:first-child input {
+        width: 100%;
+    }
+    .smsActivation-box-confirm>div:nth-child(2) {
+        display: inline-block;
+        width: 90px;
+    }
+}
+@media screen and (max-width: 356px) {
+    .smsActivation-box-confirm>div:first-child {
+        display: inline-block;
+        width: 65%;
+        float: none!important;
+    }
+}
+.sms-activation-step .sms-activation-step-message {
+    padding-bottom: 5px;
+}
+.sms-activation-step .sms-activation-step-area {
+    padding: 10px 0px 50px 0px;
+}
+.sms-activation-step .sms-activation-step-confirm {
+    float: left;
+}
+.sms-activation-step .sms-activation-step-or {
+    padding: 0 8px;
+}
+#registration-phone-container .search-item {
+    padding-top: 20px;
+}

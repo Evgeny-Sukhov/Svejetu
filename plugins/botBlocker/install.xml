@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="botBlocker">
+    <title>Bot Blocker</title>
+    <description>Allows you to prevent bots from scanning the site</description>
+    <author>Curtis Jackson</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>1.0.1</version>
+    <date>23.02.2020</date>
+    <class>BotBlocker</class>
+    <compatible>4.6.2</compatible>
+
+    <files>
+        <file>i18n/ru.json</file>
+        <file>.htaccess</file>
+        <file>rlBotBlocker.class.php</file>
+    </files>
+
+    <hooks>
+        <hook name="init"><![CDATA[]]></hook>
+        <hook name="boot"><![CDATA[
+             // Here will be located list of bots, because the config have too short length
+        ]]></hook>
+        <hook name="apPhpConfigBeforeUpdate"><![CDATA[]]></hook>
+        <hook name="apPhpConfigBottom"><![CDATA[]]></hook>
+        <hook name="apTplContentBottom"><![CDATA[]]></hook>
+    </hooks>
+
+    <configs key="botBlocker" name="Bot Blocker"><![CDATA[]]>
+        <config key="botB_module" name="Bot blocker module" type="bool"><![CDATA[1]]></config>
+        <config key="botB_bots_list" name="List of bots" type="textarea" description="&lt;div style='margin-top: 7px;'&gt;Type in bots that you want to block separating them with commas. Bots will be identified in the User-Agent header.&lt;/div&gt;">
+            <![CDATA[Sogou,msnbot,daum.net,grapeshot,baidu,qwant,BLEXBot,DotBot,AhrefsBot,SemrushBot,mj12bot,trendictionbot,worldping-api,magpie-crawler,magpie-crawler,CCBot]]>
+        </config>
+    </configs>
+
+    <updates>
+        <update version="1.0.1" files="rlBotBlocker.class.php"><![CDATA[]]></update>
+    </updates>
+</plugin>

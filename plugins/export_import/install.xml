@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="export_import">
+    <title>XLSX/CSV Import/Export</title>
+    <description>Allows administrator and users to import/export listings in XLS(X) and CSV formats</description>
+    <author>John Freeman</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>3.7.1</version>
+    <date>16.08.2012</date>
+    <controller>export_import</controller>
+    <class>ExportImport</class>
+    <compatible>4.6.0</compatible>
+    
+    <files>
+        <file>admin/export_import.inc.php</file>
+        <file>admin/export_import.tpl</file>
+        <file>admin/import.php</file>
+        <file>admin/import_interface.tpl</file>
+        <file>admin/search.tpl</file>
+        <file>admin/row.tpl</file>
+        <file>static/gallery.png</file>
+        <file>static/lib.js</file>
+        <file>static/lib_admin.js</file>
+        <file>static/style.css</file>
+        <file>static/front-end.css</file>
+        <file>rlExportImport.class.php</file>
+        <file>controller.inc.php</file>
+        <file>controller.tpl</file>
+        <file>import.php</file>
+        <file>search.tpl</file>
+        <file>admin/export_grid.tpl</file>
+        <file>admin/grid.tpl</file>
+        <file>admin/pagination.tpl</file>
+        <file>pagination.tpl</file>
+        <file>static/pagination.js</file>
+        <file>src/Adapters/ProfileThumbnailUploadAdapter.php</file>
+        <file>src/Handlers/Escort.php</file>
+        <file>src/Handlers/File.php</file>
+        <file>src/Handlers/Jobs.php</file>
+        <file>src/Handlers/ListingPackages.php</file>
+        <file>vendor/autoload.php</file>
+        <file>src/Helpers.php</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('ExportImport', null, 'export_import');
+        $GLOBALS['rlExportImport']->install();
+    ]]></install>
+	
+    <hooks>
+        <hook version="3.7.1" name="apTplHeader"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apPhpIndexBottom"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apExtListingsFilters"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="listingsModifyFieldSearch"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="listingsModifyWhereSearch"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="tplHeader"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apPhpAccountTypesTop"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apTplAccountTypesForm"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="specialBlock"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="listingsModifyJoinSearch"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="ajaxRequest"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apAjaxRequest"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="staticDataRegister"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="apTplFooter"><![CDATA[]]></hook>
+        <hook version="3.7.1" name="sitemapExcludedPages"><![CDATA[]]></hook>
+    </hooks>
+	
+    <phrases>
+        <phrase key="ext_imported_listings_manager" module="ext"><![CDATA[Imported Listings]]></phrase>
+        <phrase key="eil_export" module="common"><![CDATA[Export]]></phrase>
+        <phrase version="3.6.1" key="eil_export_criteria" module="common"><![CDATA[Export Manager]]></phrase>
+        <phrase version="3.6.1" key="eil_file_format" module="common"><![CDATA[File format]]></phrase>
+        <phrase version="3.6.1" key="eil_csv" module="common"><![CDATA[CSV (comma-separated)]]></phrase>
+        <phrase version="3.6.1" key="eil_no_listings_found" module="common"><![CDATA[No listings were found by your criteria; please change the export criteria and try again.]]></phrase>
+        <phrase version="3.6.1" key="eil_no_form" module="common"><![CDATA[Please select a category.]]></phrase>
+        <phrase key="eil_import" module="common"><![CDATA[Import]]></phrase>
+        <phrase key="eil_export_listings" module="common"><![CDATA[Table of Listings]]></phrase>
+        <phrase key="eil_importing" module="common"><![CDATA[Importing]]></phrase>
+        <phrase key="eil_importing_caption" module="common"><![CDATA[Importing in process, please wait]]></phrase>
+        <phrase key="eil_preview" module="common"><![CDATA[Preview]]></phrase>
+        <phrase version="3.6.1" key="eil_no_categories_available" module="common"><![CDATA[There are no categories]]></phrase>
+        <phrase version="3.6.1" key="eil_start" module="common"><![CDATA[Import]]></phrase>
+        <phrase key="eil_back_to_import_form" module="common"><![CDATA[Back to Mapping Manager]]></phrase>
+        <phrase version="3.6.1" key="eil_back_to_export_criteria" module="common"><![CDATA[Back to Export Manager]]></phrase>
+        <phrase version="3.6.1" key="eil_file_for_import" module="common"><![CDATA[CSV/XLS(X) File]]></phrase>
+        <phrase version="3.6.1" key="eil_pictures_archive" module="common"><![CDATA[Zipped Photo Archive]]></phrase>
+        <phrase version="3.6.1" key="eil_pictures_archive_desc" module="common"><![CDATA[Upload only zipped files.]]></phrase>
+        <phrase version="3.6.1" key="eil_import_wrong_archive_format" module="common"><![CDATA[Failed to upload the zipped archive; please make sure you're loading a ZIP file.]]></phrase>
+        <phrase version="3.6.1" key="eil_import_no_content" module="common"><![CDATA[Listing details are missing in the uploaded file.]]></phrase>
+        <phrase version="3.6.1" key="eil_import_unable_to_upload" module="common"><![CDATA[Failed to upload the file; please check /tmp/upload/ directory permission or contact Flynax Support.]]></phrase>
+        <phrase version="3.6.1" key="eil_select_field" module="common"><![CDATA[- Select a field -]]></phrase>
+        <phrase version="3.6.1" key="eil_listingeil_start_fields" module="common"><![CDATA[Listing Fields]]></phrase>
+        <phrase key="eil_system_fields" module="common"><![CDATA[System Fields]]></phrase>
+        <phrase version="3.6.1" key="eil_pictures_by_url" module="common"><![CDATA[Pictures from URL*]]></phrase>
+        <phrase key="eil_pictures_urls" module="common"><![CDATA[Picture URL]]></phrase>
+        <phrase version="3.6.1" key="eil_pictures_by_url_note" module="common"><![CDATA[* - The column should contain comma-separated file names of pictures (from zipped file) or links to pictures.]]></phrase>
+        <phrase version="3.6.1" key="eil_pictures_from_zip" module="common"><![CDATA[Picture File Name from Zipped File*]]></phrase>
+        <phrase key="eil_owner_account" module="common"><![CDATA[Owner Username or ID]]></phrase>
+        <phrase version="3.6.1" key="eil_listing_wont_imported" module="common"><![CDATA[Import of the listing has been canceled.]]></phrase>
+        <phrase version="3.6.1" key="eil_column_wont_imported" module="common"><![CDATA[Import of the column has been canceled.]]></phrase>
+        <phrase version="3.6.1" key="eil_listing_wont_exported" module="common"><![CDATA[Export of the listing has been canceled.]]></phrase>
+        <phrase version="3.6.1" key="eil_column_wont_exported" module="common"><![CDATA[Export of the column has been canceled.]]></phrase>
+        <phrase version="3.6.1" key="eil_duplicate_fields_selected" module="common"><![CDATA[The field is mapped with more than one column.]]></phrase>
+        <phrase version="3.6.1" key="eil_default_category" module="common"><![CDATA[Default category]]></phrase>
+        <phrase version="3.6.1" key="eil_default_owner" module="common"><![CDATA[Default owner]]></phrase>
+        <phrase version="3.6.1" key="eil_default_plan" module="common"><![CDATA[Default package]]></phrase>
+        <phrase version="3.6.1" key="eil_default_status" module="common"><![CDATA[Default status]]></phrase>
+        <phrase version="3.6.1" key="eil_select_listing_type" module="common"><![CDATA[- First, select a listing type -]]></phrase>
+        <phrase key="eil_paid" module="common"><![CDATA[Mark as paid]]></phrase>
+        <phrase version="3.6.1" key="eil_no_listings" module="common"><![CDATA[There are no listings to be imported.]]></phrase>
+        <phrase version="3.6.1" key="eil_no_fields_checked" module="common"><![CDATA[Please select columns.]]></phrase>
+        <phrase version="3.6.1" key="eil_no_fields_selected" module="common"><![CDATA[Please map at least two columns with fields available on your site to continue importing.]]></phrase>
+        <phrase version="3.6.1" key="eil_completed" module="common"><![CDATA[Importing completed. <b>{count}</b> listing(s) imported.]]></phrase>
+        <phrase version="3.6.1" key="eil_per_run" module="common"><![CDATA[Listings per request]]></phrase>
+        <phrase version="3.6.1" key="eil_per_run_desc" module="common"><![CDATA[The number of listings to be imported per an AJAX request.]]></phrase>
+        <phrase key="eil_max_file_size" module="common"><![CDATA[The maximum file size:]]></phrase>
+        <phrase version="3.6.1" key="eil_import_table" module="common"><![CDATA[Mapping Manager]]></phrase>
+        <phrase version="3.6.1" key="eil_total_listings" module="common"><![CDATA[Total listings]]></phrase>
+        <phrase version="3.6.1" key="eil_fullscreen" module="common"><![CDATA[Full screen]]></phrase>
+        <phrase version="3.6.1" key="eil_default_view" module="common"><![CDATA[Exit full screen]]></phrase>
+        <phrase version="3.6.1" key="eil_option_name" module="common"><![CDATA[Allow users to import/export XLS(X)/CSV listings.]]></phrase>
+        <phrase version="3.6.1" key="eil_youtube_video_field" module="common"><![CDATA[YouTube video URL or ID**]]></phrase>
+        <phrase version="3.6.1" key="eil_youtube_video_field_note" module="common"><![CDATA[** - The column must contain comma-separated IDs or links to videos.]]></phrase>
+        <phrase version="3.2.0" key="eil_free_listing" module="common"><![CDATA[Free Plan]]></phrase>
+        <phrase version="3.2.0" key="eil_prepaid_package" module="common"><![CDATA[Prepaid Package]]></phrase>
+        <phrase version="3.6.1" key="eil_beforeunload_hint" module="ext"><![CDATA[Importing is in process; closing the page will stop the import process.]]></phrase>
+        <phrase version="3.5.0" key="eil_loc_latitude" module="common"><![CDATA[Latitude]]></phrase>
+        <phrase version="3.5.0" key="eil_loc_longitude" module="common"><![CDATA[Longitude]]></phrase>
+        <phrase version="3.6.1" key="eil_update_membership" module="common"><![CDATA[Updating membership plans...]]></phrase>
+        <phrase version="3.6.1" key="eil_import_form" module="common"><![CDATA[Mapping Manager]]></phrase>
+        <phrase version="3.6.1" key="eil_mp_updated" module="common"><![CDATA[The listings were imported and membership plans of the corresponding user accounts successfully updated. ]]></phrase>
+        <phrase version="3.6.1" key="eil_mp_cant_import" module="common"><![CDATA[You’ve exceeded the limit of listings allowed; please consider upgrading to another membership plan or reduce the number of listings in the file.]]></phrase>
+        <phrase version="3.6.1" key="eil_mp_restriction" module="common"><![CDATA[Your membership plan allows you to import ({listting_count}) listings.]]></phrase>
+        <phrase version="3.6.1" key="iel_cantimport" module="common"><![CDATA[Failed to import the listings because you've used up your membership plan and listing packages are disabled.]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_1" module="common"><![CDATA[Category]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_2" module="common"><![CDATA[Subcategory level 1]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_3" module="common"><![CDATA[Subcategory level 2]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_4" module="common"><![CDATA[Subcategory level 3]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_5" module="common"><![CDATA[Subcategory level 4]]></phrase>
+        <phrase version="3.6.1" key="eil_category_level_6" module="common"><![CDATA[Subcategory level 5]]></phrase>
+        <phrase version="3.5.0" key="eil_page" module="admin"><![CDATA[Page]]></phrase>
+        <phrase version="3.6.1" key="iel_account_type_cant_import" module="common"><![CDATA[Your account type doesn't allow you to import or export listings.]]></phrase>
+        <phrase version="3.6.1" key="eil_only_mp_allowed" module="admin"><![CDATA[You can import listings to a user account with an available membership plan. To import listings under a listing package go to the Basic Settings and enable Listing Packages. ]]></phrase>
+        <phrase version="3.6.1" key="eil_you_can_import_only_for_package" module="common"><![CDATA[Your listing package allows you to upload up to {number} listing(s).]]></phrase>
+        <phrase version="3.6.1" key="eil_you_didnt_bought_listing_package" module="common"><![CDATA[The listings will be marked as unpaid. Please purchase a listing package to publish them on the site.]]></phrase>
+        <phrase version="3.6.1" key="eil_cant_import_more_listings_to_package" module="common"><![CDATA[You’ve exceeded the limit of listings allowed; please consider upgrading to another package or reduce the number of listings in the file.]]></phrase>
+        <phrase version="3.6.1" key="eil_owned" module="common"><![CDATA[available]]></phrase>
+        <phrase version="3.6.1" key="eil_file_for_import_desc" module="common"><![CDATA[Upload only XLS(X) or CSV files]]></phrase>
+        <phrase version="3.6.1" key="eil_xls" module="common"><![CDATA[XLS (Excel 2003)]]></phrase>
+        <phrase version="3.6.1" key="eil_xlsx" module="common"><![CDATA[XLSX (Excel 2007)]]></phrase>
+        <phrase version="3.6.1" key="eil_import_wrong_file_format" module="common"><![CDATA[Failed to import the file; please make sure you're loading a CSV or XLS(X) file.]]></phrase>
+    </phrases>
+
+    <pages>
+        <page version="3.0.0" key="xls_export_import" name="Import/Export Listings" type="system" path="excel-import-export" controller="controller" menus="2" tpl="1" login="1"><![CDATA[]]></page>
+    </pages>
+	
+    <updates>
+        <update version="2.0.1" files="admin/export_import.inc.php,rlExportImport.class.php"><![CDATA[]]></update>
+        <update version="2.0.2" files="rlExportImport.class.php"><![CDATA[]]></update>
+        <update version="2.0.3" files="rlExportImport.class.php,admin/export_import.tpl"><![CDATA[]]></update>
+        <update version="2.0.4" files="rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl,phpExcel/PHPExcel.php,phpExcel/PHPExcel/Autoloader.php,phpExcel/PHPExcel/CachedObjectStorage/APC.php,phpExcel/PHPExcel/CachedObjectStorage/CacheBase.php,phpExcel/PHPExcel/CachedObjectStorage/DiscISAM.php,phpExcel/PHPExcel/CachedObjectStorage/ICache.php,phpExcel/PHPExcel/CachedObjectStorage/Igbinary.php,phpExcel/PHPExcel/CachedObjectStorage/Memcache.php,phpExcel/PHPExcel/CachedObjectStorage/Memory.php,phpExcel/PHPExcel/CachedObjectStorage/MemoryGZip.php,phpExcel/PHPExcel/CachedObjectStorage/MemorySerialized.php,phpExcel/PHPExcel/CachedObjectStorage/PHPTemp.php,phpExcel/PHPExcel/CachedObjectStorage/SQLite.php,phpExcel/PHPExcel/CachedObjectStorage/SQLite3.php,phpExcel/PHPExcel/CachedObjectStorage/Wincache.php,phpExcel/PHPExcel/CachedObjectStorageFactory.php,phpExcel/PHPExcel/Calculation.php,phpExcel/PHPExcel/Calculation/Database.php,phpExcel/PHPExcel/Calculation/DateTime.php,phpExcel/PHPExcel/Calculation/Engineering.php,phpExcel/PHPExcel/Calculation/Exception.php,phpExcel/PHPExcel/Calculation/ExceptionHandler.php,phpExcel/PHPExcel/Calculation/Financial.php,phpExcel/PHPExcel/Calculation/FormulaParser.php,phpExcel/PHPExcel/Calculation/FormulaToken.php,phpExcel/PHPExcel/Calculation/Function.php,phpExcel/PHPExcel/Calculation/functionlist.txt,phpExcel/PHPExcel/Calculation/Functions.php,phpExcel/PHPExcel/Calculation/Logical.php,phpExcel/PHPExcel/Calculation/LookupRef.php,phpExcel/PHPExcel/Calculation/MathTrig.php,phpExcel/PHPExcel/Calculation/Statistical.php,phpExcel/PHPExcel/Calculation/TextData.php,phpExcel/PHPExcel/Calculation/Token/Stack.php,phpExcel/PHPExcel/Cell.php,phpExcel/PHPExcel/Cell/AdvancedValueBinder.php,phpExcel/PHPExcel/Cell/DataType.php,phpExcel/PHPExcel/Cell/DataValidation.php,phpExcel/PHPExcel/Cell/DefaultValueBinder.php,phpExcel/PHPExcel/Cell/Hyperlink.php,phpExcel/PHPExcel/Cell/IValueBinder.php,phpExcel/PHPExcel/Chart.php,phpExcel/PHPExcel/Chart/DataSeries.php,phpExcel/PHPExcel/Chart/DataSeriesValues.php,phpExcel/PHPExcel/Chart/Exception.php,phpExcel/PHPExcel/Chart/Layout.php,phpExcel/PHPExcel/Chart/Legend.php,phpExcel/PHPExcel/Chart/PlotArea.php,phpExcel/PHPExcel/Chart/Renderer/jpgraph.php,phpExcel/PHPExcel/Chart/Renderer/PHP Charting Libraries.txt,phpExcel/PHPExcel/Chart/Title.php,phpExcel/PHPExcel/Comment.php,phpExcel/PHPExcel/DocumentProperties.php,phpExcel/PHPExcel/DocumentSecurity.php,phpExcel/PHPExcel/Exception.php,phpExcel/PHPExcel/HashTable.php,phpExcel/PHPExcel/IComparable.php,phpExcel/PHPExcel/IOFactory.php,phpExcel/PHPExcel/locale/cs/config,phpExcel/PHPExcel/locale/cs/functions,phpExcel/PHPExcel/locale/da/config,phpExcel/PHPExcel/locale/da/functions,phpExcel/PHPExcel/locale/de/config,phpExcel/PHPExcel/locale/de/functions,phpExcel/PHPExcel/locale/en/uk/config,phpExcel/PHPExcel/locale/es/config,phpExcel/PHPExcel/locale/es/functions,phpExcel/PHPExcel/locale/fi/config,phpExcel/PHPExcel/locale/fi/functions,phpExcel/PHPExcel/locale/fr/config,phpExcel/PHPExcel/locale/fr/functions,phpExcel/PHPExcel/locale/hu/config,phpExcel/PHPExcel/locale/hu/functions,phpExcel/PHPExcel/locale/it/config,phpExcel/PHPExcel/locale/it/functions,phpExcel/PHPExcel/locale/nl/config,phpExcel/PHPExcel/locale/nl/functions,phpExcel/PHPExcel/locale/no/config,phpExcel/PHPExcel/locale/no/functions,phpExcel/PHPExcel/locale/pl/config,phpExcel/PHPExcel/locale/pl/functions,phpExcel/PHPExcel/locale/pt/br/config,phpExcel/PHPExcel/locale/pt/br/functions,phpExcel/PHPExcel/locale/pt/config,phpExcel/PHPExcel/locale/pt/functions,phpExcel/PHPExcel/locale/ru/config,phpExcel/PHPExcel/locale/ru/functions,phpExcel/PHPExcel/locale/sv/config,phpExcel/PHPExcel/locale/sv/functions,phpExcel/PHPExcel/locale/tr/config,phpExcel/PHPExcel/locale/tr/functions,phpExcel/PHPExcel/NamedRange.php,phpExcel/PHPExcel/Reader/Abstract.php,phpExcel/PHPExcel/Reader/CSV.php,phpExcel/PHPExcel/Reader/DefaultReadFilter.php,phpExcel/PHPExcel/Reader/Excel2003XML.php,phpExcel/PHPExcel/Reader/Excel2007.php,phpExcel/PHPExcel/Reader/Excel2007/Chart.php,phpExcel/PHPExcel/Reader/Excel2007/Theme.php,phpExcel/PHPExcel/Reader/Excel5.php,phpExcel/PHPExcel/Reader/Excel5/Escher.php,phpExcel/PHPExcel/Reader/Exception.php,phpExcel/PHPExcel/Reader/Gnumeric.php,phpExcel/PHPExcel/Reader/HTML.php,phpExcel/PHPExcel/Reader/IReader.php,phpExcel/PHPExcel/Reader/IReadFilter.php,phpExcel/PHPExcel/Reader/OOCalc.php,phpExcel/PHPExcel/Reader/SYLK.php,phpExcel/PHPExcel/ReferenceHelper.php,phpExcel/PHPExcel/RichText.php,phpExcel/PHPExcel/RichText/ITextElement.php,phpExcel/PHPExcel/RichText/Run.php,phpExcel/PHPExcel/RichText/TextElement.php,phpExcel/PHPExcel/Settings.php,phpExcel/PHPExcel/Shared/CodePage.php,phpExcel/PHPExcel/Shared/Date.php,phpExcel/PHPExcel/Shared/Drawing.php,phpExcel/PHPExcel/Shared/Escher.php,phpExcel/PHPExcel/Shared/Escher/DgContainer.php,phpExcel/PHPExcel/Shared/Escher/DgContainer/SpgrContainer.php,phpExcel/PHPExcel/Shared/Escher/DgContainer/SpgrContainer/SpContainer.php,phpExcel/PHPExcel/Shared/Escher/DggContainer.php,phpExcel/PHPExcel/Shared/Escher/DggContainer/BstoreContainer.php,phpExcel/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE.php,phpExcel/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE/Blip.php,phpExcel/PHPExcel/Shared/Excel5.php,phpExcel/PHPExcel/Shared/File.php,phpExcel/PHPExcel/Shared/Font.php,phpExcel/PHPExcel/Shared/JAMA/CHANGELOG.TXT,phpExcel/PHPExcel/Shared/JAMA/CholeskyDecomposition.php,phpExcel/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php,phpExcel/PHPExcel/Shared/JAMA/LUDecomposition.php,phpExcel/PHPExcel/Shared/JAMA/Matrix.php,phpExcel/PHPExcel/Shared/JAMA/QRDecomposition.php,phpExcel/PHPExcel/Shared/JAMA/SingularValueDecomposition.php,phpExcel/PHPExcel/Shared/JAMA/utils/Error.php,phpExcel/PHPExcel/Shared/JAMA/utils/Maths.php,phpExcel/PHPExcel/Shared/OLE.php,phpExcel/PHPExcel/Shared/OLE/ChainedBlockStream.php,phpExcel/PHPExcel/Shared/OLE/PPS.php,phpExcel/PHPExcel/Shared/OLE/PPS/File.php,phpExcel/PHPExcel/Shared/OLE/PPS/Root.php,phpExcel/PHPExcel/Shared/OLERead.php,phpExcel/PHPExcel/Shared/PasswordHasher.php,phpExcel/PHPExcel/Shared/PCLZip/gnu-lgpl.txt,phpExcel/PHPExcel/Shared/PCLZip/pclzip.lib.php,phpExcel/PHPExcel/Shared/PCLZip/readme.txt,phpExcel/PHPExcel/Shared/String.php,phpExcel/PHPExcel/Shared/TimeZone.php,phpExcel/PHPExcel/Shared/trend/bestFitClass.php,phpExcel/PHPExcel/Shared/trend/exponentialBestFitClass.php,phpExcel/PHPExcel/Shared/trend/linearBestFitClass.php,phpExcel/PHPExcel/Shared/trend/logarithmicBestFitClass.php,phpExcel/PHPExcel/Shared/trend/polynomialBestFitClass.php,phpExcel/PHPExcel/Shared/trend/powerBestFitClass.php,phpExcel/PHPExcel/Shared/trend/trendClass.php,phpExcel/PHPExcel/Shared/XMLWriter.php,phpExcel/PHPExcel/Shared/ZipArchive.php,phpExcel/PHPExcel/Shared/ZipStreamWrapper.php,phpExcel/PHPExcel/Style.php,phpExcel/PHPExcel/Style/Alignment.php,phpExcel/PHPExcel/Style/Border.php,phpExcel/PHPExcel/Style/Borders.php,phpExcel/PHPExcel/Style/Color.php,phpExcel/PHPExcel/Style/Conditional.php,phpExcel/PHPExcel/Style/Fill.php,phpExcel/PHPExcel/Style/Font.php,phpExcel/PHPExcel/Style/NumberFormat.php,phpExcel/PHPExcel/Style/Protection.php,phpExcel/PHPExcel/Style/Supervisor.php,phpExcel/PHPExcel/Worksheet.php,phpExcel/PHPExcel/Worksheet/AutoFilter.php,phpExcel/PHPExcel/Worksheet/AutoFilter/Column.php,phpExcel/PHPExcel/Worksheet/AutoFilter/Column/Rule.php,phpExcel/PHPExcel/Worksheet/BaseDrawing.php,phpExcel/PHPExcel/Worksheet/CellIterator.php,phpExcel/PHPExcel/Worksheet/ColumnDimension.php,phpExcel/PHPExcel/Worksheet/Drawing.php,phpExcel/PHPExcel/Worksheet/Drawing/Shadow.php,phpExcel/PHPExcel/Worksheet/HeaderFooter.php,phpExcel/PHPExcel/Worksheet/HeaderFooterDrawing.php,phpExcel/PHPExcel/Worksheet/MemoryDrawing.php,phpExcel/PHPExcel/Worksheet/PageMargins.php,phpExcel/PHPExcel/Worksheet/PageSetup.php,phpExcel/PHPExcel/Worksheet/Protection.php,phpExcel/PHPExcel/Worksheet/Row.php,phpExcel/PHPExcel/Worksheet/RowDimension.php,phpExcel/PHPExcel/Worksheet/RowIterator.php,phpExcel/PHPExcel/Worksheet/SheetView.php,phpExcel/PHPExcel/WorksheetIterator.php,phpExcel/PHPExcel/Writer/Abstract.php,phpExcel/PHPExcel/Writer/CSV.php,phpExcel/PHPExcel/Writer/Excel2007.php,phpExcel/PHPExcel/Writer/Excel2007/Chart.php,phpExcel/PHPExcel/Writer/Excel2007/Comments.php,phpExcel/PHPExcel/Writer/Excel2007/ContentTypes.php,phpExcel/PHPExcel/Writer/Excel2007/DocProps.php,phpExcel/PHPExcel/Writer/Excel2007/Drawing.php,phpExcel/PHPExcel/Writer/Excel2007/Rels.php,phpExcel/PHPExcel/Writer/Excel2007/StringTable.php,phpExcel/PHPExcel/Writer/Excel2007/Style.php,phpExcel/PHPExcel/Writer/Excel2007/Theme.php,phpExcel/PHPExcel/Writer/Excel2007/Workbook.php,phpExcel/PHPExcel/Writer/Excel2007/Worksheet.php,phpExcel/PHPExcel/Writer/Excel2007/WriterPart.php,phpExcel/PHPExcel/Writer/Excel5.php,phpExcel/PHPExcel/Writer/Excel5/BIFFwriter.php,phpExcel/PHPExcel/Writer/Excel5/Escher.php,phpExcel/PHPExcel/Writer/Excel5/Font.php,phpExcel/PHPExcel/Writer/Excel5/Parser.php,phpExcel/PHPExcel/Writer/Excel5/Workbook.php,phpExcel/PHPExcel/Writer/Excel5/Worksheet.php,phpExcel/PHPExcel/Writer/Excel5/Xf.php,phpExcel/PHPExcel/Writer/Exception.php,phpExcel/PHPExcel/Writer/HTML.php,phpExcel/PHPExcel/Writer/IWriter.php"><![CDATA[]]></update>
+        <update version="2.1.0" files="rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl"><![CDATA[]]></update>
+        <update version="3.0.0" files="search.tpl,import.php,controller.tpl,controller.inc.php,rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl,admin/import_interface.tpl,static/gallery.png,static/lib.js,static/style.css,static/lib_admin.js,static/front-end.css,.htaccess"><![CDATA[
+            $sql = "UPDATE `".RL_DBPREFIX."lang_keys` SET `Module` = 'common' WHERE `Plugin` = 'export_import' AND `Module` = 'admin'";
+            $GLOBALS['rlDb'] -> query($sql);
+        ]]></update>
+        <update version="3.1.0" files="rlExportImport.class.php,controller.inc.php,admin/row.tpl,admin/export_import.inc.php"><![CDATA[
+            global $reefless;
+
+            $reefless -> loadClass('Actions');
+            $GLOBALS['rlActions'] -> enumAdd('account_types', 'Abilities', 'export_import');
+
+            $sql = "UPDATE `".RL_DBPREFIX."account_types` SET `Abilities` = CONCAT(`Abilities`, ',export_import') WHERE `Key` <> 'visitor' AND `Abilities` <> ''";
+            $GLOBALS['rlDb'] -> query($sql);
+
+            $sql = "UPDATE `".RL_DBPREFIX."account_types` SET `Abilities` = 'export_import' WHERE `Key` <> 'visitor' AND `Abilities` = ''";
+            $GLOBALS['rlDb'] -> query($sql);
+        ]]></update>
+        <update version="3.1.1" files="rlExportImport.class.php,admin/export_import.tpl"><![CDATA[]]></update>
+        <update version="3.2.0" files="rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl,admin/search.tpl,controller.inc.php,controller.tpl,import.php,static/lib.js,static/lib_admin.js,static/front-end.css"><![CDATA[]]></update>
+        <update version="3.2.1" files="rlExportImport.class.php,admin/export_import.inc.php"><![CDATA[]]></update>
+        <update version="3.3.0" files="rlExportImport.class.php,admin/export_import.inc.php,controller.inc.php,controller.tpl,controller_responsive_42.tpl,static/front-end.css,static/lib.js"><![CDATA[]]></update>
+        <update version="3.3.1" files="rlExportImport.class.php,import.php,controller_responsive_42.tpl"><![CDATA[]]></update>
+        <update version="3.3.2"><![CDATA[]]></update>
+        <update version="3.3.3" files="rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl,controller.inc.php,controller.tpl,static/lib.js"><![CDATA[]]></update>
+        <update version="3.3.4" files="admin/export_import.inc.php"><![CDATA[]]></update>
+        <update version="3.3.5" files="admin/export_import.tpl,rlExportImport.class.php"><![CDATA[
+            global $rlDb;
+            if ($rlDb -> getRow("SHOW FIELDS FROM  `".RL_DBPREFIX."listings` WHERE `Field` = 'cl_direct'")) {
+                $sql ="UPDATE `".RL_DBPREFIX."listings` SET `cl_direct` = '1' WHERE `Import_file` != '' ";
+                $rlDb -> query($sql);
+            }
+        ]]></update>
+        <update version="3.3.6" files="rlExportImport.class.php,static/lib_admin.js,admin/export_import.inc.php,admin/export_import.tpl"><![CDATA[]]></update>
+        <update version="3.3.7" files="rlExportImport.class.php"><![CDATA[]]></update>
+        <update version="3.3.8" files="rlExportImport.class.php,admin/export_import.tpl,static/lib_admin.js"><![CDATA[]]></update>
+        <update version="3.4.0" files="rlExportImport.class.php,controller.tpl,controller_responsive_42.tpl,static/front-end.css,admin/export_import.tpl,admin/export_import.inc.php"><![CDATA[]]></update>
+        <update version="3.4.1" files="rlExportImport.class.php"><![CDATA[]]></update>
+        <update version="3.5.0" files="rlExportImport.class.php,controller.inc.php,static/lib.js,static/lib_admin.js,admin/export_import.inc.php,admin/export_import.tpl,admin/import.php,admin/export_grid.tpl,admin/grid.tpl,admin/pagination.tpl,controller.tpl,import.php,pagination.tpl,search.tpl,static/front-end.css,static/pagination.js,static/style.css,phpExcel/PHPExcel/Calculation/Functions.php"><![CDATA[]]></update>
+        <update version="3.6.0" files="admin/export_import.inc.php,admin/export_import.tpl,admin/import.php,controller.inc.php,controller.tpl,import.php,rlExportImport.class.php,src/Adapters/ProfileThumbnailUploadAdapter.php,src/Handlers/Escort.php,src/Handlers/File.php,src/Handlers/Jobs.php,src/Handlers/ListingPackages.php,static/front-end.css,static/lib.js,static/style.css"><![CDATA[
+            require_once RL_UPLOAD . 'export_import/vendor/autoload.php';
+            $filesystem = new \Flynax\Component\Filesystem();
+            $filesystem->copy(RL_UPLOAD . 'export_import/vendor', RL_PLUGINS . 'export_import/vendor');
+        ]]></update>
+        <update version="3.6.1" files="rlExportImport.class.php,admin/export_import.inc.php,admin/export_import.tpl,controller.inc.php,controller.tpl,src/Adapters/ZipArchiveAdapter.php"><![CDATA[
+            global $rlDb;
+
+            require_once RL_UPLOAD . 'export_import/vendor/autoload.php';
+            $filesystem = new \Flynax\Component\Filesystem();
+            $filesystem->remove(RL_PLUGINS . 'export_import/vendor');
+            $filesystem->copy(RL_UPLOAD . 'export_import/vendor', RL_PLUGINS . 'export_import/vendor');
+
+            $sql = "UPDATE `" . RL_DBPREFIX . "lang_keys` SET `Value` = 'Import/Export Listings' ";
+            $sql .= "WHERE `Key` = 'pages+title+xls_export_import' AND `Code` = 'en'";
+            $rlDb->query($sql);
+
+            $sql = "UPDATE `" . RL_DBPREFIX . "lang_keys` SET `Value` = 'Import/Export Listings' ";
+            $sql .= "WHERE `Key` = 'pages+name+xls_export_import' AND `Code` = 'en'";
+            $rlDb->query($sql);
+
+            $removingPhrases = array(
+            'eil_sub_category_note',
+            'eil_pictures_from_zip_note',
+            'eil_type_for_import_desc',
+            'eil_subcategory_using_fail',
+            );
+
+            $keys = implode("','", $removingPhrases);
+            $sql = "DELETE FROM `" . RL_DBPREFIX . "lang_keys` WHERE `Key` IN ('{$keys}') ";
+            $sql .= "AND `Plugin` = 'export_import'";
+            $rlDb->query($sql);
+        ]]></update>
+        <update version="3.6.2" files="admin/export_import.inc.php,controller.inc.php,rlExportImport.class.php,static/lib.js,static/pagination.js"><![CDATA[]]></update>
+        <update version="3.7.0" files="admin/export_import.inc.php,admin/export_import.tpl,controller.inc.php,rlExportImport.class.php,src/Helpers.php,static/lib_admin.js"><![CDATA[]]></update>
+        <update version="3.7.1" files="admin/export_import.inc.php,admin/export_import.tpl,rlExportImport.class.php,src/Helpers.php"><![CDATA[]]></update>
+    </updates>
+	
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('ExportImport', null, 'export_import');
+        $GLOBALS['rlExportImport']->uninstall();
+    ]]></uninstall>
+</plugin>

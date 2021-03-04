@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="similarListings">
+    <title>Similar Listings</title>
+    <description>Shows a box with similar ads on the Listing Details page</description>
+    <author>Mike Fletcher</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>1.2.0</version>
+    <date>21.04.2014</date>
+    <controller>similar_listings</controller>
+    <class>SimilarListings</class>
+    <compatible>4.6.2</compatible>
+
+    <files>
+        <file>admin/similar_listings.tpl</file>
+        <file>admin/similar_listings.inc.php</file>
+        <file>admin/.htaccess</file>
+        <file>box.tpl</file>
+        <file>rlSimilarListings.class.php</file>
+        <file>.htaccess</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('SimilarListings', null, 'similarListings');
+        $GLOBALS['rlSimilarListings']->install();
+    ]]></install>
+
+    <hooks>
+        <hook version="1.2.0" name="apTplCategoriesNavBar"><![CDATA[]]></hook>
+        <hook version="1.2.0" name="apTplCategoriesBottom"><![CDATA[]]></hook>
+        <hook version="1.2.0" name="apTplFooter"><![CDATA[]]></hook>
+        <hook version="1.2.0" name="specialBlock"><![CDATA[]]></hook>
+        <hook version="1.2.0" name="listingDetailsTop"><![CDATA[]]></hook>
+    </hooks>
+
+    <phrases>
+        <phrase key="sl_form_title" module="admin"><![CDATA[Build Similar Listing Form for the {category} category]]></phrase>
+        <phrase key="sl_form" module="admin"><![CDATA[Similar Listing Form]]></phrase>
+        <phrase key="sl_build_form" module="admin"><![CDATA[Build Similar Listing Form]]></phrase>
+    </phrases>
+
+    <blocks>
+        <block key="sl_similar_listings" name="Similar Listings" side="left" type="smarty" tpl="1"><![CDATA[
+            {include file=$smarty.const.RL_PLUGINS|cat:"similarListings"|cat:$smarty.const.RL_DS|cat:"box.tpl"}
+        ]]></block>
+    </blocks>
+    
+    <updates>
+        <update version="1.0.1" files="box.tpl,rlSimilarListings.class.php"><![CDATA[]]></update>
+        <update version="1.0.2" files="box.tpl,rlSimilarListings.class.php"><![CDATA[]]></update>
+        <update version="1.0.3" files="rlSimilarListings.class.php"><![CDATA[]]></update>
+        <update version="1.0.4" files="rlSimilarListings.class.php"><![CDATA[]]></update>
+        <update version="1.0.5" files="rlSimilarListings.class.php"><![CDATA[]]></update>
+        <update version="1.1.0" files="rlSimilarListings.class.php,admin/similar_listings.inc.php"><![CDATA[]]></update>
+        <update version="1.2.0" files="rlSimilarListings.class.php,admin/similar_listings.inc.php,admin/similar_listings.tpl,.htaccess"><![CDATA[
+            $GLOBALS['reefless']->loadClass('SimilarListings', null, 'similarListings');
+            $GLOBALS['rlSimilarListings']->update120();
+        ]]></update>
+    </updates>
+
+    <configs key="similar_listings_config" name="Similar Listings">
+        <![CDATA[]]>
+        <config key="sl_listings_in_box" name="Number of listings in the box" type="text"><![CDATA[3]]></config>
+        <config key="sl_relevance_mode" name="Medium relevance" description="If disabled, the box will show only exact matches." type="bool"><![CDATA[1]]></config>
+        <config key="sl_category_exact_match" name="Category relevance" description="Shows listings from the same category." type="bool"><![CDATA[1]]></config>
+    </configs>
+
+    <uninstall>
+        <![CDATA[
+            $GLOBALS['reefless']->loadClass('SimilarListings', null, 'similarListings');
+            $GLOBALS['rlSimilarListings']->uninstall();
+        ]]>
+    </uninstall>
+</plugin>

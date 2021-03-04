@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="categories_icons">
+	<title>Categories Icons</title>
+	<description>Categories Icons plugin</description>
+	<author>Vladimir</author>
+	<owner>Flynax Classifieds Software</owner>
+	<version>2.2.1</version>
+	<date>03.01.2012</date>
+	<class>CategoriesIcons</class>
+
+	<files>
+		<file>admin/add_category_block.tpl</file>
+		<file>rlCategoriesIcons.class.php</file>
+		<file>rlInstall.class.php</file>
+		<file>icons_pre_category.tpl</file>
+		<file>icons_post_category.tpl</file>
+		<file>subcat_icons.tpl</file>
+	</files>
+
+	<install>
+		<![CDATA[
+			$GLOBALS['reefless']->loadClass('Install', null, 'categories_icons');
+			$GLOBALS['rlInstall']->install();
+		]]>
+	</install>
+
+	<hooks>
+		<hook version="2.2.0" name="getCategoriesModifySelect">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookGetCategoriesModifySelect();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="tplPreCategory">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookTplPreCategory();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="tplPostCategory">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookTplPostCategory();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="tplPreSubCategory">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookTplPreSubCategory();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apTplCategoriesForm">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApTplCategoriesForm();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpCategoriesBeforeAdd">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpCategoriesBeforeAdd();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpCategoriesBeforeEdit">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpCategoriesBeforeEdit();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpCategoriesBottom">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpCategoriesBottom();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpCategoriesPost">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpCategoriesPost();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpConfigAfterUpdate">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpConfigAfterUpdate();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apTplListingTypesForm">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApTplListingTypesForm();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpListingTypesPost">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpListingTypesPost();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpListingTypesBeforeAdd">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpListingTypesBeforeAdd();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpListingTypesBeforeEdit">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpListingTypesBeforeEdit();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apTplListingTypesAction">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApTplListingTypesAction();
+			]]>
+		</hook>
+		<hook version="2.2.0" name="apPhpListingTypesBottom">
+			<![CDATA[
+				$GLOBALS['reefless']->loadClass('CategoriesIcons', null, 'categories_icons');
+				$GLOBALS['rlCategoriesIcons']->hookApPhpListingTypesBottom();
+			]]>
+		</hook>
+	</hooks>
+
+	<phrases>
+		<phrase key="category_icon" module="admin"><![CDATA[Edit Icon]]></phrase>
+		<phrase key="categories_icon_upload_image" module="admin"><![CDATA[Upload Image]]></phrase>
+		<phrase key="category_icon_image" module="admin"><![CDATA[Image]]></phrase>
+		<phrase key="category_icon_notice" module="admin"><![CDATA[The icon will be resized relative to the following sizes: <b>[width]px</b>/<b>[height]px</b>, click [here] to edit sizes.]]></phrase>
+		<phrase key="category_icon_icon_deleted" module="admin"><![CDATA[Category icon has been successfully deleted.]]></phrase>
+		<phrase key="category_icon" module="admin"><![CDATA[Icon]]></phrase>
+		<phrase key="current_icon" module="admin"><![CDATA[Current Icon]]></phrase>
+	</phrases>
+
+	<configs key="categories_icons" name="Categories Icons">
+		<![CDATA[]]>
+		<config key="categories_icons_width" name="Icon width" description="" values="" type="text" validate="int"><![CDATA[50]]></config>
+		<config key="categories_icons_height" name="Icon height" description="" values="" type="text" validate="int"><![CDATA[50]]></config>  
+		<config key="categories_icons_crop_module" name="Use Crop" description="" values="" type="bool" validate="int"><![CDATA[1]]></config>
+		<config key="categories_icons_position" name="Icon position around category name" description="" values="left,right,top,bottom" type="select" validate=""><![CDATA[left]]></config>
+	</configs>
+
+	<updates>
+		<update version="2.1.0" files="admin/add_category_block.tpl,admin/apPhpCategoriesBeforeAdd.php,admin/apPhpCategoriesBeforeEdit.php,rlCategoriesIcons.class.php,admin/apPhpConfigAfterUpdate.php"><![CDATA[]]></update>
+		<update version="2.1.1" files="admin/apPhpCategoriesBeforeAdd.php,admin/apPhpCategoriesBeforeEdit.php,rlCategoriesIcons.class.php"><![CDATA[]]></update>
+		<update version="2.1.2" files="rlCategoriesIcons.class.php,icons_post_category.tpl,icons_pre_category.tpl,subcat_icons.tpl"><![CDATA[]]></update>
+		<update version="2.1.3" files="admin/apPhpCategoriesBeforeAdd.php,icons_post_category.tpl,icons_pre_category.tpl,subcat_icons.tpl"><![CDATA[]]></update>
+		<update version="2.2.0" files="admin/add_category_block.tpl,rlCategoriesIcons.class.php,rlInstall.class.php">
+			<![CDATA[
+				if (version_compare($GLOBALS['config']['rl_version'], '4.5.1') >= 0) {
+					$GLOBALS['rlDb']->query("ALTER TABLE `".RL_DBPREFIX."listing_types` ADD `Icon` varchar(255) NOT NULL;");
+				}
+			]]>
+		</update>
+		<update version="2.2.1" files="icons_post_category.tpl,icons_pre_category.tpl,subcat_icons.tpl"><![CDATA[]]></update>
+	</updates>
+
+	<uninstall>
+		<![CDATA[
+			$GLOBALS['reefless']->loadClass('Install', null, 'categories_icons');
+			$GLOBALS['rlInstall']->uninstall();
+		]]>
+	</uninstall>
+</plugin>

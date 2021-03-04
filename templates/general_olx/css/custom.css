@@ -1,0 +1,181 @@
+.label.star {
+    z-index: 1;
+    font-size: 0;
+    width: 30%;
+    height: 40%;
+    background-image: url("../img/star.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#df_field_phone {
+    font-size: 160%;
+}
+.seller-info  .name {
+    font-size: 160%;
+}
+#nav-username {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-cats.cats-item {
+    display: flex;
+    overflow: hidden;
+}
+.header-cats.cats-item.inactive {
+    opacity: 0.7;
+}
+header img.parent-cat {
+    padding-bottom: 3px;
+    padding-right: 5px;
+    max-height: 22px;
+}
+
+
+#subcats-container li {
+    padding: 6px 12px;
+    margin: 4px 4px;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,1);
+    display: block;
+}
+
+#header-cats {
+    position: relative;
+}
+
+.header-subcats-list {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.top-navigation .header-row {
+    display: flex;
+    flex-direction: row;
+}
+
+#home-link #home-button {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#home-link {
+    background-image: url("../img/svg/home-button.svg");
+    width: 22px;
+    height: 22px;
+    fill: white;
+    margin-right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 10px;
+}
+
+header .cat-tree {
+    justify-content: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+header .add-property {
+    height: 32px;
+    line-height: 30px;
+    margin: 6px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+header .cats-item .cat-item-link {
+    padding: 6px 12px;
+    margin: 4px 4px;
+    border-radius: 8px;
+    background-color: white;
+    display: block;
+    background-color: rgba(255,255,255,1);
+}
+
+header .cats-item a:hover {
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.4);
+}
+
+.horizontal-search form input.tags-autocomplete {
+    border-radius: 4px;
+    width: 290px;
+}
+
+.horizontal-search form input.d-block {
+    margin-left: 10px;
+
+}
+
+#user-navbar > span.default::before {
+    margin-right: 12px;
+}
+
+header.page-header div.top-navigation {
+    height: auto;
+    display: flex;
+    align-content: space-between;
+    padding: 0;
+}
+
+header .top-navigation form#top-search {
+    display: flex;
+    width: 100%;
+    padding-left: 20px;
+}
+
+header .top-navigation .add-property {
+    margin-left: 15px;
+}
+
+header .top-navigation form #top-search-bar{
+    margin-left: 15px;
+}
+
+.menu-button {
+    display: block;
+}
+
+.top-navigation-inside {
+    padding: 14px;
+}
+
+@media only screen and (min-width: 992px) {
+    nav.main-menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    nav.main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #nav-username {
+        display: none !important;
+    }
+
+    #user-navbar.circle > .default::after {
+        margin-left: 0;
+    }
+
+    #top-search input.tags-autocomplete {
+        padding-left: 0;
+    }
+    #top-search input.tags-autocomplete::placeholder {
+        padding-left: 40px;
+    }
+}

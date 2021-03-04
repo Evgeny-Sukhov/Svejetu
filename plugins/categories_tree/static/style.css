@@ -1,0 +1,75 @@
+/* category tree styles */
+
+div.ctree-move-top {
+    padding: 0 0 5px 0;
+}
+ul.ctree-container > li {
+    padding: 3px 0 3px 0;
+}
+ul.ctree-container > li:first-child {
+    padding-top: 0;
+}
+ul.ctree-container > li:last-child {
+    padding-bottom: 0;
+}
+ul.ctree-container li {
+    white-space: nowrap;
+}
+ul.ctree-container a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 80%;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+}
+ul.ctree-container .current {
+    font-weight: bold;
+}
+ul.ctree-container span.count {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 3px;
+    border-radius: 2px;
+}
+ul.ctree-container img.plus-icon {
+    width: 0px;
+    height: 0px;
+}
+ul.ctree-allow-sc img.plus-icon {
+    width: 12px;
+    height: 11px;
+    cursor: pointer;
+}
+ul.ctree-allow-sc > li.ctree-sc > img.plus-icon {
+    width: 10px;
+    height: 11px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+ul.ctree-sc-container {
+    padding: 0 0 0 15px;
+}
+ul.ctree-sc-container > li {
+    padding: 2px 0;
+}
+ul.ctree-sc-container > li:first-child {
+    padding-top: 4px;
+}
+ul.ctree-sc-container > li:last-child {
+    padding-bottom: 4px;
+}
+body[dir=rtl] li.ctree-sc > img.plus-icon {
+    margin-right: 0;
+    margin-left: 2px;
+}
+body[dir=rtl] ul.ctree-sc-container {
+    padding: 0 15px 0 0;
+}
+.side_block.categories-box-nav.tree .mCustomScrollbar:not(.mCS_no_scrollbar) .mCSB_container {
+    position: relative;
+}
+/* category tree styles end */

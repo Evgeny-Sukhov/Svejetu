@@ -1,0 +1,244 @@
+/* import/export listings front-end css */
+
+div.iel_table {
+	overflow-x: auto;
+}
+table.import {
+	table-layout: fixed;
+	width: auto;
+}
+div.iel_table table.submit td.name {
+	padding-right: 15px;
+}
+table.import tr.col-checkbox {
+	text-align: center;
+}
+table.import td.row-checkbox > div {
+	padding: 7px 2px 0;
+}
+table.import td.row-checkbox > div > input {
+	margin: 0!important;
+}
+table.import tr.col-checkbox > td > div {
+	padding: 0 0 5px;
+}
+table.import td.no-style {
+	background: transparent!important;
+	border: 0!important;
+}
+table.list tr.body > td {
+	padding: 8px 5px 8px 5px!important;
+	vertical-align: top!important;
+}
+table.import tr.header td > div > span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 5px;
+}
+table.import tr.header td > div > span + select {
+	width: 200px;
+}
+
+table.import tr.header td > div {
+	padding: 9px 5px 8px 0;
+	white-space: nowrap;
+}
+table.import tr:not(.no_hover):hover td {
+	background: #fffeda;
+}
+table.import td.divider {
+	width: 5px;
+	background: transparent;
+	/*display: inline-block;*/
+}
+span.field_description {
+	padding: 0 10px;
+}
+
+.import_note {
+	margin-top: 30px;
+	padding: 10px 0 5px;
+	border-top: 1px #e8e8e8 solid;
+}
+.import_note > div {
+	padding: 2px 0;
+}
+
+table.import select optgroup {
+	font-weight: bold;
+	font-style: normal;
+	padding: 2px 5px 2px 10px;
+}
+table.import select optgroup option {
+	padding: 1px 5px 2px 15px;
+}
+table.import tr.disabled td,
+table.import tr td.disabled {
+	background: #ffeeee;
+}
+table.import tr.disabled td div,
+table.import tr td.disabled div {
+	opacity: 0.6;
+	filter: alpha(opacity=50);
+}
+div.eil table.table > tbody > tr > td.name {
+    width: 160px;
+}
+
+div.progress {
+	width: 50%;
+	border-width: 1px;
+	border-style: solid;
+	background: white;
+	padding: 2px;
+	margin: 5px 0 0 0;
+	overflow: hidden;
+}
+div.progress > div {
+	overflow: hidden;
+}
+#processing {
+	box-shadow: none;
+	padding: 1px;
+	margin: 0;
+	width: 0;
+	text-align: center;
+}
+
+div#content table.content {
+    table-layout: fixed;
+}
+
+a.eil_fullscreen,
+a.eil_default {
+	padding: 1px 15px 2px;
+	padding: 3px 15px 3px\9;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+a.eil_fullscreen span,
+a.eil_default span {
+	padding: 0 20px 2px 0!important;
+	background: url('gallery.png') right -66px no-repeat;
+}
+a.eil_default span {
+	background-position: right -94px;
+}
+
+div.eil_fullscreen_area {
+	padding: 25px 20px;
+}
+div.eil_footer {
+	padding: 15px 0 0 0!important;
+	margin: 0!important;
+	width: auto!important;
+	background: none!important;
+	border: 0!important;
+}
+div.eil_footer img {
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+	-webkit-filter: grayscale();
+	max-height: 40px;
+	max-width: 150px;
+}
+div.eil_results_block {
+	padding: 0 0 15px 0!important;
+}
+td.row-plan ul.type {
+	padding: 7px 0 0 0;
+}
+
+/* responsive templates */
+.content-padding input[type=checkbox]:not(.default) {
+	position: inherit;
+	width: 0;
+	height: 0;
+}
+.content-padding table.list tr.header > td {
+	padding-right: 5px!important;
+	padding-left: 5px!important;
+}
+.content-padding span.field_description {
+	line-height: 22px;
+	font-size: 0.875em;
+	color: #999999;
+	line-height: 36px;
+	display: inline-block;
+}
+
+div.submit-cell.listing-container {
+	padding-bottom: 0;
+}
+div.submit-cell.listing-container > div.field {
+	overflow: auto;
+}
+div.submit-cell.options-start {
+    margin-top: 30px;
+}
+
+div.eil_header td.ralign {
+	vertical-align: top;
+}
+
+.grid-pagination > li {
+	display: inline-block;
+}
+
+#goto-page {
+	max-width: 45px;
+	text-align: center;
+}
+
+table.list > tbody > tr.body > td.eil-field {
+    white-space: normal;
+    position: relative;
+    line-height: initial;
+}
+.eil-field > div {
+    word-break: break-all;
+    max-width: 200px;
+    width: 100%;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    max-height: 7.6ex;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    background: inherit;
+    min-width: 150px;
+}
+.eil-field.inline-nowrap > div {
+    white-space: nowrap;
+}
+.eil-field.scroll > div {
+    min-width: 120px;
+}
+.eil-field.scroll:hover > div {
+    position: absolute;
+    top: 8px;
+    word-break: normal;
+    max-width: 340px;
+    max-height: 240px;
+    overflow: auto;
+    -webkit-line-clamp: initial;
+    display: block;
+    background: white;
+    text-overflow: initial;
+    box-shadow: 0 0 0 15px white, 0 0 0 17px rgba(0,0,0,.1);
+    z-index: 1;
+    margin-bottom: 50px;
+}
+.eil-field.scroll:hover:after {
+    content: '';
+    min-width: 120px;
+    min-height: 7.6ex;
+    display: block;
+    position: relative;
+}
+
+.import-package-informer .informer {
+	min-height: inherit !important;
+}

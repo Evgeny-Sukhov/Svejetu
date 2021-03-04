@@ -1,0 +1,6 @@
+{
+    "config_groups+name+botBlocker": "Блокировщик ботов",
+    "config+name+botB_module": "Модуль блокировки",
+    "config+name+botB_bots_list": "Список ботов",
+    "config+des+botB_bots_list": "<div style='margin-top: 7px;'>Введите название ботов, которые вы хотите заблокировать, разделяя их запятыми. Идентификация ботов будет производиться в хедере User-Agent.</div>"
+}

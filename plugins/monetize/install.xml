@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="monetize">
+    <title>Monetizer</title>
+    <description>Bumps up listings to the top and highlights listing titles</description>
+    <author>Alan Wake</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>1.4.1</version>
+    <date>15.09.2016</date>
+    <class>Monetize</class>
+    <controller>monetize</controller>
+    <compatible>4.5.2</compatible>
+
+    <files>
+        <file>bumpup_page.tpl</file>
+        <file>highlight_page.tpl</file>
+        <file>rlBumpUp.class.php</file>
+        <file>rlMonetize.class.php</file>
+        <file>rlHighlight.class.php</file>
+        <file>highlight_page.inc.php</file>
+        <file>bumpup_page.inc.php</file>
+        <file>admin/bump_up_plans.inc.php</file>
+        <file>admin/highlight_plans.inc.php</file>
+        <file>admin/monetize.inc.php</file>
+        <file>admin/bump_up_plans.tpl</file>
+        <file>admin/highlight_plans.tpl</file>
+        <file>admin/monetize.tpl</file>
+        <file>admin/view/listings_plan_form.tpl</file>
+        <file>static/gallery.png</file>
+        <file>static/lib.js</file>
+        <file>static/style.css</file>
+        <file>view/bumped_up_date.tpl</file>
+        <file>view/bump_up_tab.tpl</file>
+        <file>view/monetize_icons.tpl</file>
+        <file>view/highlight_tab.tpl</file>
+        <file>view/listing_plan.tpl</file>
+        <file>view/monetize_block.tpl</file>
+        <file>static/admin_style.css</file>
+        <file>view/js-code.tpl</file>
+        <file>view/plan.tpl</file>
+        <file>view/monetize_stat_tab.tpl</file>
+        <file>view/recent_listing.tpl</file>
+        <file>bootstrap.php</file>
+        <file>vendor/autoload.php</file>
+        <file>view/my_package_item_listing_info.tpl</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+        $GLOBALS['rlMonetize']->install();
+    ]]></install>
+
+    <phrases>
+        <phrase key="add_bump_up" module="admin"><![CDATA[Add a Bump Up Package]]></phrase>
+        <phrase key="edit_bump_up" module="admin"><![CDATA[Edit Bump Up Package]]></phrase>
+        <phrase version="1.1.0" key="select_bump_up" module="common"><![CDATA[Select a Bump Up Package]]></phrase>
+        <phrase key="bumpup_plans" module="admin"><![CDATA[Bump Up Packages]]></phrase>
+        <phrase key="bumpup_success" module="common"><![CDATA[Your payment went through and your listing was bumped up.]]></phrase>
+        <phrase key="bump_up_error" module="common"><![CDATA[Something went wrong, please try again later!]]></phrase>
+        <phrase key="bumpup_back" module="common"><![CDATA[Back to My Listings]]></phrase>
+        <phrase key="bumpup_one_plan" module="common"><![CDATA[There's only one package available.]]></phrase>
+        <phrase key="bumpup_free" module="common"><![CDATA[Free]]></phrase>
+        <phrase key="bumpups" module="common"><![CDATA[Bump Ups]]></phrase>
+        <phrase key="bump_up" module="common"><![CDATA[Bump Up]]></phrase>
+        <phrase key="bumpups_credits" module="common"><![CDATA[Bump Up Credits]]></phrase>
+        <phrase key="bumpup_creditplan_des" module="common"><![CDATA[You can easily bump up your listing(s) using available credits in your balance.]]></phrase>
+        <phrase key="bumpup_listing" module="common"><![CDATA[Bump Up]]></phrase>
+        <phrase key="bumpups_available" module="common"><![CDATA[Number of bump ups]]></phrase>
+        <phrase key="no_bumpups_plans" module="common"><![CDATA[There are no bump up packages; please contact the Administrator.]]></phrase>
+        <phrase key="bump_up_deleted" module="common"><![CDATA[You've successfully removed the bump up package.]]></phrase>
+        <phrase key="bump_up_delete_error" module="common"><![CDATA[Failed to remove the bump up package; please try again later.]]></phrase>
+        <phrase key="bump_up_adding_error" module="common"><![CDATA[Failed to add a bump up package; please try again later.]]></phrase>
+        <phrase key="bumpup_plan_added" module="common"><![CDATA[You've successfully added a bump up package.]]></phrase>
+        <phrase key="bumpup_plan_edited" module="common"><![CDATA[You've successfully edited the bump up package.]]></phrase>
+        <phrase key="next_service_will_apply" module="common"><![CDATA[The [package_name] package includes the following options:]]></phrase>
+        <phrase key="bump_up_balance" module="common"><![CDATA[Balance]]></phrase>
+        <phrase key="recently_bumped_up" module="common"><![CDATA[Recently Bumped Up Ads]]></phrase>
+        <phrase key="bp_credits_available" module="common"><![CDATA[Credits available]]></phrase>
+        <phrase key="bp_last_purchase" module="common"><![CDATA[Recently purchased on]]></phrase>
+        <phrase key="no_bumped_up" module="common"><![CDATA[You haven't yet bumped up any listings.]]></phrase>
+        <phrase key="do_bump_up" module="common"><![CDATA[Bump Up Your Listing!]]></phrase>
+        <phrase key="m_highlight_plan" module="common"><![CDATA[Highlight Package]]></phrase>
+        <phrase key="m_select_highlight_plan" module="common"><![CDATA[Select a Highlight Package]]></phrase>
+        <phrase key="m_highlight" module="common"><![CDATA[Highlight]]></phrase>
+        <phrase key="m_highlight_plans" module="common"><![CDATA[Highlight Packages]]></phrase>
+        <phrase key="m_highlight_success" module="common"><![CDATA[Your payment went through and your listing was highlighted.]]></phrase>
+        <phrase key="m_no_highlighted" module="common"><![CDATA[You haven't yet highlighted any listings.]]></phrase>
+        <phrase key="m_no_highlight_plan" module="common"><![CDATA[There are no highlight packages; please contact the Administrator.]]></phrase>
+        <phrase key="m_highlight_available" module="common"><![CDATA[Number of highlights]]></phrase>
+        <phrase key="m_highlight_plan_removed" module="common"><![CDATA[You've successfully removed the highlight package.]]></phrase>
+        <phrase key="m_highlight_plan_remove_error" module="common"><![CDATA[Failed to remove the highlight package; please try again later.]]></phrase>
+        <phrase key="m_highlight_credits" module="common"><![CDATA[Highlight Credits]]></phrase>
+        <phrase key="m_highlight_credits_description" module="common"><![CDATA[You can easily hightlight your listing(s) using available credits in your balance.]]></phrase>
+        <phrase key="m_highlight_something" module="common"><![CDATA[Highlight Your Listing!]]></phrase>
+        <phrase key="m_highlights" module="common"><![CDATA[Highlights]]></phrase>
+        <phrase key="m_days_active" module="common"><![CDATA[Days active]]></phrase>
+        <phrase key="m_days_highlight" module="common"><![CDATA[Highlight for ......days]]></phrase>
+        <phrase key="m_add_highlight" module="common"><![CDATA[Add a Highlight Package]]></phrase>
+        <phrase key="m_edit_highlight" module="common"><![CDATA[Edit Highlight Package]]></phrase>
+        <phrase key="m_highlight_plan_added" module="common"><![CDATA[You've successfully added a highlight package.]]></phrase>
+        <phrase key="m_highlight_save_error" module="common"><![CDATA[Failed to save the package; please try again later.]]></phrase>
+        <phrase key="m_recently_highlighted" module="common"><![CDATA[Recently Highlighted Ads]]></phrase>
+        <phrase key="m_field_empty" module="common"><![CDATA[Please fill in the {h_field} field; don't use "0".]]></phrase>
+        <phrase key="m_field_negative" module="common"><![CDATA[Please fill in the {h_field} field; don't use negative numbers.]]></phrase>
+        <phrase key="m_highlight_for" module="common"><![CDATA[Highlight for ]]></phrase>
+        <phrase key="m_highlighted_for" module="common"><![CDATA[Ad hightlighted for ]]></phrase>
+        <phrase key="m_days" module="common"><![CDATA[Days]]></phrase>
+        <phrase key="m_promote" module="common"><![CDATA[(Promote)]]></phrase>
+        <phrase key="m_package_price" module="common"><![CDATA[Package price]]></phrase>
+        <phrase version="1.1.0" key="m_highlight_days" module="common"><![CDATA[{days}d]]></phrase>
+        <phrase version="1.1.0" key="m_highlight_hours" module="common"><![CDATA[{hours}h]]></phrase>
+        <phrase version="1.1.0" key="m_highlight_left" module="common"><![CDATA[ left]]></phrase>
+        <phrase version="1.1.0" key="m_unhighlighted" module="common"><![CDATA[Unhighlighted]]></phrase>
+        <phrase version="1.3.0" key="highlight" module="admin"><![CDATA[Highlight]]></phrase>
+        <phrase version="1.3.0" key="m_assign_credits" module="admin"><![CDATA[Grant credits]]></phrase>
+        <phrase version="1.3.0" key="m_assign" module="admin"><![CDATA[Grant]]></phrase>
+        <phrase version="1.3.0" key="m_credits_assigned" module="admin"><![CDATA[You've successfully granted credits to the user.]]></phrase>
+        <phrase version="1.3.0" key="m_cant_assign_highlight_credits" module="admin"><![CDATA[Please add a highlight package to grant credits because you have none.]]></phrase>
+        <phrase version="1.3.0" key="m_cant_assign_bumpup_credits" module="admin"><![CDATA[Please add a bump up package to grant credits because you have none.]]></phrase>
+        <phrase version="1.3.0" key="m_plan_has_assigned_to" module="admin"><![CDATA[The <b>[monetize_plan]</b> package is used by <b>[users_count]</b> user(s).]]></phrase>
+        <phrase version="1.3.0" key="m_remove_method_notice" module="admin"><![CDATA[Please select a way of removing below:]]></phrase>
+        <phrase version="1.3.0" key="m_direct_remove" module="admin"><![CDATA[Remove the package and all the credits available to users]]></phrase>
+        <phrase version="1.3.0" key="m_remove_with_assign" module="admin"><![CDATA[Assign remaining credits to another package]]></phrase>
+        <phrase version="1.3.0" key="m_assign_block_title" module="admin"><![CDATA[Package manager]]></phrase>
+        <phrase version="1.3.0" key="m_do_bump_up_escort" module="common"><![CDATA[Bump Up Your Profile!]]></phrase>
+        <phrase version="1.3.0" key="m_do_highlight_escort" module="common"><![CDATA[Highlight Your Profile!]]></phrase>
+        <phrase version="1.3.0" key="m_bumpup_success_escort" module="common"><![CDATA[Your payment went through and your profile was bumped up.]]></phrase>
+        <phrase version="1.3.0" key="m_highlight_success_escort" module="common"><![CDATA[Your payment went through and your profile was highlighted.]]></phrase>
+        <phrase version="1.3.0" key="m_back_to_my_profiles" module="common"><![CDATA[Back to My Profiles]]></phrase>
+    </phrases>
+
+    <configs key="monetize_config" name="Monetizer">
+        <![CDATA[]]>
+        <config key="is_european_time_format" name="24-hour clock format" type="bool"><![CDATA[1]]></config>
+    </configs>
+    <hooks>
+        <hook version="1.3.0" name="apAjaxRequest"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apTplListingPlansForm"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="smartyFetchHook"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpListingPlansBeforeAdd"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpListingPlansBeforeEdit"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="afterListingDone"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpListingPlansPost"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpListingPlansValidate"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="myListingsIcon"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="phpListingsUpgradePlanInfo"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="staticDataRegister"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="tplFooter"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="phpListingsUpgradeListing"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="addListingBeforeSteps"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apTplFooter"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="phpMyPackagesRenewValidate"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="phpMyPackagesRenewPreAction"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="profileController"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="postPaymentComplete"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="profileBlock"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="myListingsSqlWhere"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingNavIcons"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="tplListingPlanService"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="phpGetPlanByCategoryModifyField"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingsModifyField"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingsModifyFieldByPeriod"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingAfterFields"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="myListingsSqlFields"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="cronAdditional"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="myListingsafterStatFields"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingsModifyFieldSearch"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpListingsAfterAdd"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apPhpPlansUsingAfterGrant"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apExtTransactionsService"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="apTplHeader"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="listingsModifyFieldByAccount"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="couponAttachCouponBox"><![CDATA[]]></hook>
+        <hook version="1.3.0" name="ajaxRecentlyAddedLoadPost"><![CDATA[]]></hook>
+
+        <hook version="1.4.0" name="tplMyPackageItemListingInfo"><![CDATA[]]></hook>
+        <hook version="1.4.0" name="phpMyPackagesTop"><![CDATA[]]></hook>
+        <hook version="1.4.0" name="tplMyPackagesPlanService"><![CDATA[]]></hook>
+        <hook version="1.4.0" name="apPhpListingsMassActions"><![CDATA[]]></hook>
+        <hook version="1.4.0" name="tplListingItemClass"><![CDATA[]]></hook>
+        <hook version="1.4.0" name="tplMyListingItemClass"><![CDATA[]]></hook>
+    </hooks>
+
+    <pages>
+        <page key="bumpup_page" name="Bump Up Your Listing" type="system" path="bump-up-listing" controller="bumpup_page" tpl="1" login="1"><![CDATA[]]></page>
+        <page key="highlight_page" name="Highlight Your Listing" type="system" path="highlight-listing" controller="highlight_page" tpl="1" login="1"><![CDATA[]]></page>
+    </pages>
+
+    <blocks>
+        <block key="monetize_listing_detail" login="0" readonly="1" name="Listing Details" side="left" type="php" tpl="1"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+            $GLOBALS['rlMonetize']->blockMonetizeListingDetail();
+        ]]></block>
+    </blocks>
+
+    <updates>
+        <update version="1.1.0" files="admin/bump_up_plans.inc.php,admin/bump_up_plans.tpl,admin/highlight_plans.inc.php,admin/highlight_plans.tpl,admin/monetize.tpl,admin/view/listings_plan_form.tpl,bumpup_page.inc.php,bumpup_page.tpl,highlight_page.inc.php,highlight_page.tpl,rlBumpUp.class.php,rlMonetize.class.php,rlHighlight.class.php,static/lib.js,static/style.css,view/bump_up_tab.tpl,view/bumped_up_date.tpl,view/highlight_tab.tpl,view/listing_plan.tpl,view/monetize_block.tpl,view/plan.tpl,view/js-code.tpl,view/monetize_stat_tab.tpl,view/recent_listing.tpl,static/admin_style.css"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+            $GLOBALS['rlMonetize']->update_110();
+        ]]></update>
+        <update version="1.2.0" files="bumpup_page.inc.php,highlight_page.inc.php,rlHighlight.class.php,rlMonetize.class.php,view/monetize_icons.tpl"><![CDATA[]]></update>
+        <update version="1.2.1" files="rlBumpUp.class.php,rlHighlight.class.php,rlMonetize.class.php,static/lib.js"><![CDATA[]]></update>
+        <update version="1.3.0" files="admin/highlight_plans.tpl,admin/monetize.tpl,bootstrap.php,bumpup_page.inc.php,bumpup_page.tpl,highlight_page.inc.php,highlight_page.tpl,rlBumpUp.class.php,rlHighlight.class.php,rlMonetize.class.php,static/admin_style.css,static/lib.js,static/style.css,view/monetize_block.tpl,view/monetize_stat_tab.tpl"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+            $GLOBALS['rlMonetize']->update130();
+        ]]></update>
+        <update version="1.4.0" files="admin/view/listings_plan_form.tpl,rlHighlight.class.php,rlMonetize.class.php,static/style.css,view/listing_plan.tpl,view/monetize_icons.tpl,view/my_package_item_listing_info.tpl,view/plan.tpl,static/lib.js,bumpup_page.tpl,highlight_page.tpl"><![CDATA[ ]]></update>
+        <update version="1.4.1" files="rlBumpUp.class.php,rlMonetize.class.php,view/bumped_up_date.tpl,static/style.css,view/recent_listing.tpl"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+            $GLOBALS['rlMonetize']->update141();
+        ]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('Monetize', null, 'monetize');
+        $GLOBALS['rlMonetize']->uninstall();
+    ]]></uninstall>
+</plugin>

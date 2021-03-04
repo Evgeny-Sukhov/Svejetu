@@ -1,0 +1,7 @@
+Order deny,allow
+Deny from all
+
+# allow all external requests for php|png|gif
+<FilesMatch "request\.php$">
+  ALLOW FROM ALL
+</FilesMatch>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="online">
+    <title>Online</title>
+    <description>Show who's online now</description>
+    <author>Alex</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>2.1.1</version>
+    <date>03.01.2011</date>
+    <class>Online</class>
+
+    <files>
+        <file>admin/statistics_block.tpl</file>
+        <file>admin/statistics_dom.tpl</file>
+        <file>online.left_block.tpl</file>
+        <file>rlOnline.class.php</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('Online', null, 'online');
+        $GLOBALS['rlOnline']->install();
+    ]]></install>
+
+    <hooks>
+        <hook version="2.1.0" name="specialBlock"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Online', null, 'online');
+            $GLOBALS['rlOnline']->hookSpecialBlock();
+        ]]></hook>
+        <hook version="2.1.0" name="cronAdditional"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Online', null, 'online');
+            $GLOBALS['rlOnline']->hookCronAdditional();
+        ]]></hook>
+        <hook version="2.1.0" name="apPhpHome"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Online', null, 'online');
+            $GLOBALS['rlOnline']->hookApPhpHome();
+        ]]></hook>
+    </hooks>
+
+    <configs key="online" name="Online">
+        <![CDATA[]]>
+        <config key="online_downtime" name="Downtime" description="minutes" type="text" validate="int"><![CDATA[3]]></config>
+        <config key="online_last_hour" name="Last hour" description="hour" type="text" validate="int"><![CDATA[1]]></config>
+        <config key="online_last_day" name="Last day" description="hour" type="text" validate="int"><![CDATA[24]]></config>
+    </configs>
+
+    <blocks>
+        <block key="online_block" name="Online" side="middle_right" type="smarty" tpl="1"><![CDATA[
+            {include file=$smarty.const.RL_PLUGINS|cat:'online'|cat:$smarty.const.RL_DS|cat:'online.left_block.tpl'}
+        ]]></block>
+    </blocks>
+
+    <aBlocks>
+        <aBlock key="online_block" name="Who's online now" column="1" fixed="0" ajax="1"><![CDATA[
+            $GLOBALS['rlSmarty']->display(RL_PLUGINS . 'online' . RL_DS . 'admin' . RL_DS . 'statistics_block.tpl');
+        ]]></aBlock>
+    </aBlocks>
+
+    <phrases>
+        <phrase key="online_statistics_text" module="common"><![CDATA[Statistics]]></phrase>
+        <phrase key="online_count_last_hour_text" module="common"><![CDATA[Last hour]]></phrase>
+        <phrase key="online_count_last_day_text" module="common"><![CDATA[Last day]]></phrase>
+        <phrase key="online_count_all_text" module="common"><![CDATA[Online [number] person(s)]]></phrase>
+        <phrase key="online_count_users_text" module="common"><![CDATA[Users]]></phrase>
+        <phrase key="online_count_guests_text" module="common"><![CDATA[Guests]]></phrase>
+    </phrases>
+
+    <updates>
+        <update version="2.0.1" files="rlOnline.class.php"><![CDATA[]]></update>
+        <update version="2.0.2" files=""><![CDATA[]]></update>
+        <update version="2.1.0" files="rlOnline.class.php,admin/statistics_block.tpl"><![CDATA[
+            global $rlDb;
+
+            $rlDb->query("ALTER TABLE `" . RL_DBPREFIX . "online` DROP INDEX `ID`");
+            $rlDb->query("ALTER TABLE `" . RL_DBPREFIX . "online` ADD PRIMARY KEY(`ID`)");
+            $rlDb->query("ALTER TABLE `" . RL_DBPREFIX . "online` ADD INDEX(`last_online`)");
+            $rlDb->query("ALTER TABLE `" . RL_DBPREFIX . "online` ADD INDEX(`sess_id`)");
+        ]]></update>
+        <update version="2.1.1" files="rlOnline.class.php"><![CDATA[]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('Online', null, 'online');
+        $GLOBALS['rlOnline']->uninstall();
+    ]]></uninstall>
+</plugin>

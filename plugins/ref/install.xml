@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="ref">
+    <title>Reference Number</title>
+    <description>Add Reference Number field for search and display</description>
+    <author>Mike Fletcher</author>
+    <owner>Flynax classifieds software</owner>
+    <version>2.2.0</version>
+    <date>21.12.2009</date>
+    <class>Ref</class>
+    <compatible>4.8.1</compatible>
+
+    <notices>
+        <notice version="2.1.0"><![CDATA[To generate a Reference Number for existing listings, navigate to Admin Panel -> Refresh and click the “Rebuild” button at the option “Update reference numbers of listings”]]></notice>
+    </notices>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+        $GLOBALS['rlRef']->install();
+    ]]></install>
+
+    <files>
+        <file>admin/shortUrlsOption.tpl</file>
+        <file>static/lib.js</file>
+        <file>apTplControlsForm.tpl</file>
+        <file>ref_block.tpl</file>
+        <file>rlRef.class.php</file>
+    </files>
+
+    <phrases>
+        <phrase key="ref_not_found" module="frontEnd"><![CDATA[Requested listing not found.]]></phrase>
+        <phrase key="ref_label" module="frontEnd"><![CDATA[Reference number]]></phrase>
+        <phrase key="ref_rebuild" module="admin" version="2.2.0"><![CDATA[Update reference numbers of listings]]></phrase>
+        <phrase key="ref_rebuilt" module="admin" version="2.0.3"><![CDATA[Reference numbers have been re-generated]]></phrase>
+        <phrase key="ref_processing" module="admin" version="2.1.0"><![CDATA[Processing, please wait...]]></phrase>
+        <phrase key="ref_short_urls" module="admin" version="2.2.0"><![CDATA[Ref number in listing URLs]]></phrase>
+        <phrase key="ref_short_urls_desc" module="admin" version="2.2.0"><![CDATA[Listing paths in URLs will be replaced with ref numbers, for example - www.domain.com/RF171783/.]]></phrase>
+    </phrases>
+
+    <blocks>
+        <block key="ref_search" login="0" name="Ref number look up" side="left" type="smarty" tpl="1"><![CDATA[{include file=$smarty.const.RL_PLUGINS|cat:'ref'|cat:$smarty.const.RL_DS|cat:'ref_block.tpl'}]]></block>
+    </blocks>
+
+    <configs key="ref_number" name="Reference number">
+        <![CDATA[]]>
+        <config key="ref_tpl" name="Ref number template" description="Use * for symbols which will be generated automatically, you can also put #ID# - listing ID" values="" type="text"><![CDATA[RF******]]></config>
+    </configs>
+
+    <hooks>
+        <hook version="2.1.1" name="afterListingDone"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="afterListingEdit"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="apPhpListingsAfterAdd"><![CDATA[]]></hook>
+        <hook version="2.1.1" name="apPhpListingsAfterEdit"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="apTplControlsForm"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="apTplFooter"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="staticDataRegister"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="ajaxRequest"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="apAjaxRequest"><![CDATA[]]></hook>
+        <hook version="2.1.0" name="afterImport"><![CDATA[]]></hook>
+        <hook version="2.1.1" name="apExtListingsAfterUpdate"><![CDATA[]]></hook>
+        <hook version="2.1.2" name="editListingAdditionalInfo"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="phpListingUrl"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apTplListingTypesForm"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apPhpListingTypesPost"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apPhpListingTypesBeforeAdd"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apPhpListingTypesBeforeEdit"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="init"><![CDATA[]]></hook>
+
+        <!-- Temp hook for fix problem with updating cache after plugin installation/updating -->
+        <hook name="apExtPluginsData" version="2.2.0"><![CDATA[]]></hook>
+    </hooks>
+
+    <updates>
+        <update version="2.0.1"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+            $GLOBALS['rlRef']->update201();
+        ]]></update>
+        <update version="2.0.2" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.0.3" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.0.4" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.0.5" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.0.6" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.0.7" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.1.0" files="apTplControlsForm.tpl,static/lib.js,ref_block.tpl,rlRef.class.php,.htaccess,static/.htaccess"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+            $GLOBALS['rlRef']->update210();
+        ]]></update>
+        <update version="2.1.1" files="ref_block.tpl,rlRef.class.php,static/lib.js"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+            $GLOBALS['rlRef']->update211();
+        ]]></update>
+        <update version="2.1.2" files="rlRef.class.php"><![CDATA[]]></update>
+        <update version="2.2.0" files="rlRef.class.php,admin/shortUrlsOption.tpl"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+            $GLOBALS['rlRef']->update220();
+        ]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('Ref', null, 'ref');
+        $GLOBALS['rlRef']->uninstall();
+    ]]></uninstall>
+</plugin>

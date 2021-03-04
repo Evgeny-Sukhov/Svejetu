@@ -1,0 +1,151 @@
+[
+    {
+        "name": "flynax/filesystem",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "git@gitlab.com:flynax/components/filesystem.git",
+            "reference": "7069adc973c6cb52863d829a8c2b152c65058a3e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://gitlab.com/api/v4/projects/flynax%2Fcomponents%2Ffilesystem/repository/archive.zip?sha=7069adc973c6cb52863d829a8c2b152c65058a3e",
+            "reference": "7069adc973c6cb52863d829a8c2b152c65058a3e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9",
+            "symfony/filesystem": "2.8.39"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.8.36"
+        },
+        "time": "2018-05-01T04:08:23+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Flynax\\Component\\": "src/"
+            }
+        },
+        "autoload-dev": {
+            "classmap": [
+                "tests/"
+            ]
+        },
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Flynax Classifieds Software",
+                "homepage": "https://www.flynax.com",
+                "role": "Owner"
+            },
+            {
+                "name": "Alex S.",
+                "email": "runexes@me.com",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "ressio/pharse",
+        "version": "0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ressio/pharse.git",
+            "reference": "51c87b3eba0a5e7871ce9bd7a90fe020a0729d9a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ressio/pharse/zipball/51c87b3eba0a5e7871ce9bd7a90fe020a0729d9a",
+            "reference": "51c87b3eba0a5e7871ce9bd7a90fe020a0729d9a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.0.0"
+        },
+        "time": "2015-03-24T12:48:54+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL",
+            "Artistic"
+        ],
+        "authors": [
+            {
+                "name": "RESS.IO Team",
+                "homepage": "https://github.com/ressio/pharse"
+            }
+        ],
+        "description": "Fastest PHP HTML Parser",
+        "homepage": "https://github.com/ressio/pharse",
+        "keywords": [
+            "HTML5",
+            "dom",
+            "html",
+            "parser",
+            "php"
+        ]
+    },
+    {
+        "name": "symfony/filesystem",
+        "version": "v2.8.39",
+        "version_normalized": "2.8.39.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/filesystem.git",
+            "reference": "125403a59e4cb4e3ebf46d0162fabcde613d2b97"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/125403a59e4cb4e3ebf46d0162fabcde613d2b97",
+            "reference": "125403a59e4cb4e3ebf46d0162fabcde613d2b97",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "time": "2018-02-19T16:23:47+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Filesystem\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Filesystem Component",
+        "homepage": "https://symfony.com"
+    }
+]

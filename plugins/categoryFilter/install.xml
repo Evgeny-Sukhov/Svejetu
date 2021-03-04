@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="categoryFilter">
+    <title>Filter</title>
+    <description>Allows you to create filters and filter listings on listing type, category and search results pages</description>
+    <author>Curtis</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>2.7.5</version>
+    <date>08.10.2012</date>
+    <controller>categoryFilter</controller>
+    <class>CategoryFilter</class>
+    <compatible>4.6.1</compatible>
+
+    <files>
+        <file>rlCategoryFilter.class.php</file>
+        <file>box.tpl</file>
+        <file>fields/auto_mode.tpl</file>
+        <file>fields/multi_mode.tpl</file>
+        <file>fields/categories.tpl</file>
+        <file>admin/categoryFilter.inc.php</file>
+        <file>admin/categoryFilter.tpl</file>
+        <file>static/aStyle.css</file>
+        <file>static/style.css</file>
+        <file>static/lib.js</file>
+        <file>static/jslider/jquery.slider.js</file>
+        <file>static/gallery.png</file>
+        <file>static/jslider.blue.png</file>
+        <file>static/jslider.png</file>
+        <file>static/jslider.round.plastic.png</file>
+    </files>
+
+    <install><![CDATA[]]></install>
+
+    <hooks>
+        <hook name="apTplHeader" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apAjaxBuildFormPostSaving" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyWhere" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyJoin" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyJoinSearch" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="cronAdditional" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apTplControlsForm" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyGroupSearch" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="specialBlock" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyWhereSearch" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apPhpFieldsAjaxDeleteField" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="boot" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="staticDataRegister" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apTplContentBottom" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="tplHeader" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="phpBuildPagingTemplate" version="2.5.0"><![CDATA[]]></hook>
+        <hook name="listingsModifyPreSelect" version="2.5.0"><![CDATA[]]></hook>
+        <hook name="apAjaxRequest" version="2.5.0"><![CDATA[]]></hook>
+        <hook name="sitemapAddPluginUrls" version="2.6.0"><![CDATA[]]></hook>
+        <hook name="sitemapGetRobotsRules" version="2.6.0"><![CDATA[]]></hook>
+        <hook name="pageTitle" version="2.6.0"><![CDATA[]]></hook>
+        <hook name="init" version="2.7.4"><![CDATA[]]></hook>
+
+        <!-- call recount method in the following hooks -->
+        <hook name="phpListingsAjaxDeleteListing" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="afterListingDone" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="afterListingEdit" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="phpListingsUpgradeListing" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apPhpListingsAfterAdd" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apPhpListingsAfterEdit" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="apExtListingsAfterUpdate" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="categoriesListingsIncrease" version="2.4.0"><![CDATA[]]></hook>
+        <hook name="categoriesListingsDecrease" version="2.4.0"><![CDATA[]]></hook>
+    </hooks>
+
+    <phrases>
+        <phrase key="category_filter_filter_boxes_list" module="admin" version="2.0.0"><![CDATA[All Filter Boxes]]></phrase>
+        <phrase key="category_filter_add_filter_box" module="admin" version="2.0.0"><![CDATA[Add a Filter Box]]></phrase>
+        <phrase key="category_filter_edit_filter_box" module="admin" version="2.0.0"><![CDATA[Edit Filter Box]]></phrase>
+        <phrase key="category_filter_build_filter_box" module="admin" version="2.0.0"><![CDATA[Build Filter Box]]></phrase>
+        <phrase key="category_filter_ext_caption" module="ext" version="2.0.0"><![CDATA[Filter Box Manager]]></phrase>
+        <phrase key="category_filter_filter_for" module="admin" version="2.0.0"><![CDATA[Filter box for]]></phrase>
+        <phrase key="category_filter_filter_for_type" module="admin" version="2.0.0"><![CDATA[All categories of a listing type]]></phrase>
+        <phrase key="category_filter_filter_mode_category" module="admin" version="2.0.0"><![CDATA[Category(s)]]></phrase>
+        <phrase key="category_filter_filter_for_category" module="admin" version="2.0.0"><![CDATA[Particular category(s)]]></phrase>
+        <phrase key="category_filter_no_category_selected" module="admin" version="2.0.0"><![CDATA[At least one category must be selected]]></phrase>
+        <phrase key="category_filter_filter_exists_for" module="admin" version="2.0.0"><![CDATA[The filters are already built for the categories: {categories}.]]></phrase>
+        <phrase key="category_filter_filter_exists_for_type" module="admin" version="2.0.0"><![CDATA[The filter is already built for the {type} listing type.]]></phrase>
+        <phrase key="category_filter_filter_box_added" module="admin" version="2.0.0"><![CDATA[You have successfully added a filter box.]]></phrase>
+        <phrase key="category_filter_filter_box_edited" module="admin" version="2.0.0"><![CDATA[You have successfully edited the filter box.]]></phrase>
+        <phrase key="category_filter_no_fields_added" module="common" version="2.0.0"><![CDATA[The filter form is not set up.]]></phrase>
+        <phrase key="category_filter_box_name" module="admin" version="2.0.0"><![CDATA[Box Name]]></phrase>
+        <phrase key="category_filter_filters_form" module="common" version="2.0.0"><![CDATA[Filter Form]]></phrase>
+        <phrase key="category_filter_related_categories" module="ext" version="2.1.0"><![CDATA[Related Listing Type/Category(s)/Field-bound Box]]></phrase>
+        <phrase key="category_filter_filter_box_deleted" module="admin" version="2.0.0"><![CDATA[You have successfully removed the filter box.]]></phrase>
+        <phrase key="category_filter_configure_filter" module="admin" version="2.0.0"><![CDATA[Set up Filter]]></phrase>
+        <phrase key="category_filter_show_more" module="frontEnd" version="2.0.0"><![CDATA[Show more &raquo;]]></phrase>
+        <phrase key="category_filter_remove_filter" module="frontEnd" version="2.0.0"><![CDATA[Clear filter]]></phrase>
+        <phrase key="category_filter_filtered" module="frontEnd" version="2.7.0"><![CDATA[ / {filtered_data} - Filtered]]></phrase>
+        <phrase key="category_filter_remove_filters" module="frontEnd" version="2.0.0"><![CDATA[Clear all filters]]></phrase>
+        <phrase key="category_filter_apply_filter" module="frontEnd" version="2.5.0"><![CDATA[Apply]]></phrase>
+        <phrase key="category_filter_no_listings" module="frontEnd" version="2.0.0"><![CDATA[No listings found]]></phrase>
+        <phrase key="category_filter_title_field" module="admin" version="2.0.0"><![CDATA[Filter settings for "{field}"]]></phrase>
+        <phrase key="category_filter_filter_field" module="admin" version="2.5.0"><![CDATA[Filter name]]></phrase>
+        <phrase key="category_filter_view_mode" module="admin" version="2.5.0"><![CDATA[Filter type]]></phrase>
+        <phrase key="category_filter_mode_auto" module="admin" version="2.0.0"><![CDATA[Automatic]]></phrase>
+        <phrase key="category_filter_mode_group" module="admin" version="2.0.0"><![CDATA[Range]]></phrase>
+        <phrase key="category_filter_mode_slider" module="admin" version="2.0.0"><![CDATA[Slider]]></phrase>
+        <phrase key="category_filter_mode_checkboxes" module="admin" version="2.1.0"><![CDATA[As сheckboxes]]></phrase>
+        <phrase key="category_filter_visible_items_limit" module="admin" version="2.0.0"><![CDATA[Limit visible values to]]></phrase>
+        <phrase key="category_filter_mode_limit_notice" module="admin" version="2.0.0"><![CDATA[The current field type is available in the automatic mode only.]]></phrase>
+        <phrase key="category_filter_filter_items" module="admin" version="2.0.0"><![CDATA[Filter options]]></phrase>
+        <phrase key="category_filter_changes_saved" module="admin" version="2.0.0"><![CDATA[Changes to the filter have been successfully saved.]]></phrase>
+        <phrase key="category_filter_items_auto" module="admin" version="2.0.0"><![CDATA[Options for the filter are generated automatically; click [here] to add custom ones.]]></phrase>
+        <phrase key="category_filter_change_sign" module="admin" version="2.0.0"><![CDATA[Click the symbol to reverse it.]]></phrase>
+        <phrase key="category_filter_min_max_stat" module="admin" version="2.0.0"><![CDATA[Minimum value: <b>{min}</b>; maximum value: <b>{max}</b>]]></phrase>
+        <phrase key="category_filter_refreshes_recount" module="admin" version="2.0.0"><![CDATA[Recount filter boxes]]></phrase>
+        <phrase key="category_filter_box_recounted" module="admin" version="2.0.0"><![CDATA[The filter boxes have been successfully recounted.]]></phrase>
+        <phrase key="category_filter_hide_empty_categories" module="admin" version="2.0.0"><![CDATA[Hide empty categories]]></phrase>
+        <phrase key="category_filter_filter_for_search_results" module="admin" version="2.0.0"><![CDATA[Search results]]></phrase>
+        <phrase key="category_filter_filter_for_field_bound_boxes" module="admin" version="2.1.0"><![CDATA[Field-bound Boxes]]></phrase>
+        <phrase key="category_filter_no_index" module="admin" version="2.3.0"><![CDATA[Prevent bots from crawling]]></phrase>
+        <phrase key="category_filter_no_index_desc" module="admin" version="2.3.0"><![CDATA["X-Robots-Tag: noindex, nofollow" will be added to headers of pages generated with the filter to prevent search bots from crawling them.]]></phrase>
+        <phrase key="cf_mode_text_fields" module="admin" version="2.5.0"><![CDATA[From-To format]]></phrase>
+        <phrase key="cf_remove_box_notify_fail" module="admin" version="2.5.0"><![CDATA[Failed to remove the filter box; please contact Flynax helpdesk.]]></phrase>
+        <phrase key="cf_remove_row_notify_fail" module="admin" version="2.5.0"><![CDATA[Failed to remove the item; please contact Flynax helpdesk.]]></phrase>
+        <phrase key="cf_recount_notify_fail" module="admin" version="2.5.0"><![CDATA[Failed to recount the filters; please contact Flynax helpdesk.]]></phrase>
+        <phrase key="cf_no_index" module="common" version="2.6.0"><![CDATA[]]></phrase>
+        <phrase key="cf_data_in_page" module="admin" version="2.7.0"><![CDATA[Generate SEO-friendly metadata with filtered values]]></phrase>
+        <phrase key="cf_data_in_title" module="admin" version="2.7.0"><![CDATA[Title]]></phrase>
+        <phrase key="cf_data_in_description" module="admin" version="2.7.0"><![CDATA[Meta Description]]></phrase>
+        <phrase key="cf_data_in_H1" module="admin" version="2.7.0"><![CDATA[H1 tag]]></phrase>
+        <phrase key="cf_data_in_H1_category" module="admin" version="2.7.0"><![CDATA[The metadata and H1 tag for a category can be set up from Categories > Select a category > Edit.]]></phrase>
+        <phrase key="cf_missing_parent_multifield" module="admin" version="2.7.3"><![CDATA[You must add all the location levels to the filters. Adding 1 or 2 levels out of 3, for example, states and cities but leaving out the country level will result in getting the fields hidden.]]></phrase>
+    </phrases>
+
+    <updates>
+        <update version="1.0.1" files="rlCategoryFilter.class.php,box.tpl,admin/categoryFilter.inc.php,admin/categoryFilter.tpl"><![CDATA[]]></update>
+        <update version="1.0.2" files="static/jslider/jslider.css"><![CDATA[]]></update>
+        <update version="1.0.3"><![CDATA[]]></update>
+        <update version="1.0.4" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="1.0.5" files="rlCategoryFilter.class.php,box.tpl,admin/categoryFilter.inc.php,admin/categoryFilter.tpl,static/aStyle.css,static/style.css"><![CDATA[]]></update>
+        <update version="1.0.6" files="rlCategoryFilter.class.php,static/lib.js"><![CDATA[]]></update>
+        <update version="1.0.7" files="rlCategoryFilter.class.php,box.tpl"><![CDATA[]]></update>
+        <update version="1.0.8" files="rlCategoryFilter.class.php,box.tpl,admin/categoryFilter.inc.php"><![CDATA[]]></update>
+        <update version="1.0.9" files="rlCategoryFilter.class.php,static/style.css,static/jslider.blue.png,static/jslider.png,static/jslider.round.plastic.png"><![CDATA[]]></update>
+        <update version="1.1.0" files="rlCategoryFilter.class.php,box.tpl,static/style_responsive_42.css"><![CDATA[]]></update>
+        <update version="1.1.1" files="box.tpl"><![CDATA[]]></update>
+        <update version="1.2.0" files="rlCategoryFilter.class.php,box.tpl,categories.tpl,categories_responsive_42.tpl,admin/categoryFilter.inc.php,admin/categoryFilter.tpl,static/lib.js,static/style.css,static/style_responsive_42.css"><![CDATA[]]></update>
+        <update version="2.0.0" files="rlCategoryFilter.class.php,box.tpl,fields/categories.tpl,fields/categories_responsive_42.tpl,fields/auto_mode.tpl,fields/multi_mode.tpl,admin/categoryFilter.inc.php,admin/categoryFilter.tpl,static/lib.js,static/style.css,static/aStyle.css"><![CDATA[]]></update>
+        <update version="2.0.1" files="admin/categoryFilter.inc.php,admin/categoryFilter.tpl,box.tpl,fields/auto_mode.tpl,fields/categories.tpl,fields/categories_responsive_42.tpl,fields/multi_mode.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.0.2" files="fields/auto_mode.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.0.3" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.0.4" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.0.5" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.0.6" files="rlCategoryFilter.class.php,box.tpl,fields/categories_responsive_42.tpl"><![CDATA[]]></update>
+        <update version="2.0.7" files="rlCategoryFilter.class.php,fields/auto_mode.tpl"><![CDATA[]]></update>
+        <update version="2.1.0" files="rlCategoryFilter.class.php,box.tpl,fields/auto_mode.tpl,fields/multi_mode.tpl,fields/categories.tpl,fields/categories_responsive_42.tpl,admin/categoryFilter.inc.php,admin/categoryFilter.tpl"><![CDATA[]]></update>
+        <update version="2.1.1" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.1.2" files="rlCategoryFilter.class.php,box.tpl,admin/categoryFilter.tpl"><![CDATA[]]></update>
+        <update version="2.1.3" files="rlCategoryFilter.class.php,fields/multi_mode.tpl"><![CDATA[]]></update>
+        <update version="2.2.0" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.2.1" files="rlCategoryFilter.class.php,fields/categories_responsive_42.tpl"><![CDATA[]]></update>
+        <update version="2.3.0" files="admin/categoryFilter.inc.php,admin/categoryFilter.tpl,fields/auto_mode.tpl,fields/categories.tpl,fields/categories_responsive_42.tpl,fields/multi_mode.tpl,box.tpl,rlCategoryFilter.class.php,admin/.htaccess,fields/.htaccess,static/.htaccess,static/jslider/.htaccess,static/aStyle.css,static/lib.js,static/style.css,static/style_responsive_42.css,.htaccess"><![CDATA[]]></update>
+        <update version="2.4.0" files="fields/auto_mode.tpl,fields/categories.tpl,fields/multi_mode.tpl,static/style.css,.htaccess,box.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.5.0" files="admin/categoryFilter.inc.php,admin/categoryFilter.tpl,fields/auto_mode.tpl,fields/multi_mode.tpl,static/aStyle.css,static/lib.js,box.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.6.0" files="fields/auto_mode.tpl,fields/categories.tpl,fields/multi_mode.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.7.0" files="admin/categoryFilter.inc.php,admin/categoryFilter.tpl,box.tpl,fields/auto_mode.tpl,fields/categories.tpl,fields/multi_mode.tpl,rlCategoryFilter.class.php,static/aStyle.css,static/lib.js"><![CDATA[]]></update>
+        <update version="2.7.1" files="box.tpl,rlCategoryFilter.class.php,static/lib.js"><![CDATA[]]></update>
+        <update version="2.7.2" files="fields/categories.tpl,fields/multi_mode.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.7.3" files="admin/categoryFilter.inc.php,admin/categoryFilter.tpl,rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.7.4" files="rlCategoryFilter.class.php"><![CDATA[]]></update>
+        <update version="2.7.5" files="admin/categoryFilter.inc.php,rlCategoryFilter.class.php"><![CDATA[]]></update>
+    </updates>
+
+    <uninstall><![CDATA[]]></uninstall>
+</plugin>

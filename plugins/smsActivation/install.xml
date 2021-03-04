@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin name="smsActivation">
+    <title>SMS Account Verification</title>
+    <description>Allows the Administrator to verify user accounts through Clickatell SMS service</description>
+    <author>Vladimir</author>
+    <owner>Flynax Classifieds Software</owner>
+    <version>2.2.1</version>
+    <date>30.07.2012</date>
+    <notice><![CDATA[Please visit the following forum thread to get detailed instruction of smsActication plugin using: <a href="http://forum.flynax.com/showthread.php?111-smsActivation-plugin">Instruction</a>]]></notice>
+    <class>SmsActivation</class>
+    <compatible>4.6.0</compatible>
+
+    <files>
+        <file>rlSmsActivation.class.php</file>
+        <file>rlInstall.class.php</file>
+        <file>tab.tpl</file>
+        <file>step.tpl</file>
+    </files>
+
+    <install><![CDATA[
+        $GLOBALS['reefless']->loadClass('Install', null, 'smsActivation');
+        $GLOBALS['rlInstall']->install();
+    ]]></install>
+
+    <hooks>
+        <hook version="2.2.0" name="specialBlock"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="profileController"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="profileBlock"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="pageinfoArea"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="phpRegistrationBottom"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="ajaxRequest"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="registrationStepActionsTpl"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="registrationBegin"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apTplAccountsGrid"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apTplAccountsBottom"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apAjaxRequest"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apExtAccountsSql"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apMixConfigItem"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apNotifications"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apTplAccountsNavBar"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="profileEditProfileDone"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="staticDataRegister"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="beforeRegister"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="profileEditAccountValidate"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="phpRegistrationTop"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="registerSuccess"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="apPhpAccountsAfterAdd"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="addListingTop"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="addListingPreFields"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="phpAddListingQuickRegistrationValidate"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="phpAddListingAfterQuickRegistration"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="afterListingCreate"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="afterListingEdit"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="addListingBottom"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="deleteAccountSetItems"><![CDATA[]]></hook>
+        <hook version="2.2.0" name="addListingFormDataChecking"><![CDATA[]]></hook>
+    </hooks>
+
+    <phrases>
+        <phrase key="smsActivation_phone_fields_doesnot_exist" module="frontEnd"><![CDATA[No phone fields have been found; please contact the Administrator to get the issue resolved.]]></phrase>
+        <phrase key="smsActivation_phone_value_doesnot_exist" module="frontEnd"><![CDATA[No phone number has been found; please log in to the [Account Area] and enter your cell phone number.]]></phrase>
+        <phrase key="smsActivation_no_phone_error" module="frontEnd"><![CDATA[Failed to find your cell phone number.]]></phrase>
+        <phrase key="smsActivation_account_approved" module="frontEnd"><![CDATA[Failed to enable your account due to a system error; please [contact] the Administrator or try again later.]]></phrase>
+        <phrase key="smsActivation_access_deny" module="frontEnd"><![CDATA[The page will be made available to you after verifying your account with an SMS. Please go to [My Profile] to proceed with verification.]]></phrase>
+        <phrase key="smsActivation_tab_caption" module="frontEnd"><![CDATA[SMS Verification]]></phrase>
+        <phrase key="smsActivation_message_text" module="frontEnd"><![CDATA[Your account verification code is {code}.]]></phrase>
+        <phrase key="smsActication_meesage_sent" module="frontEnd"><![CDATA[An SMS has been sent to your phone number.]]></phrase>
+        <phrase key="smsActication_meesage_sent_text" module="frontEnd"><![CDATA[An SMS has been sent to your phone number ({phone}); please copy <b>{number}</b> and paste it in the field below.]]></phrase>
+        <phrase key="smsActivation_confirm" module="frontEnd"><![CDATA[Confirm]]></phrase>
+        <phrase key="smsActivation_sesseion_expired" module="frontEnd"><![CDATA[Your session has expired; please log in again.]]></phrase>
+        <phrase key="smsActivation_sesseion_expired_notice" module="frontEnd"><![CDATA[Your session has expired, please log in to proceed with verification.]]></phrase>
+        <phrase key="smsActivation_code_is_wrong" module="frontEnd"><![CDATA[The code you've entered is wrong; please check the code and try again.]]></phrase>
+        <phrase key="smsActivation_code" module="frontEnd"><![CDATA[Verification Code]]></phrase>
+        <phrase key="smsActivation_get_code" module="frontEnd"><![CDATA[Get New Code]]></phrase>
+        <phrase key="smsActivation_activated" module="frontEnd"><![CDATA[Your account has been successfully verified.]]></phrase>
+        <phrase key="smsActivation_activated_aa" module="frontEnd"><![CDATA[Your account has been successfully verified.]]></phrase>
+        <phrase key="smsActivation_sending_fail" module="frontEnd"><![CDATA[Clickatell SMS service failed: {error}.]]></phrase>
+        <phrase key="smsActivation_or" module="frontEnd"><![CDATA[or]]></phrase>
+        <phrase key="smsActivation_sending_fail_notice" module="frontEnd"><![CDATA[Failed to send an SMS to your phone number.<br />You may [contact] the Administrator or try to verify your account later.]]></phrase>
+        <phrase key="smsActivation_profile_text" module="frontEnd"><![CDATA[Type the code in the field above, or click "Get New Code" button if you never got it. Please make sure your phone number and its format are correct.]]></phrase>
+        <phrase key="smsActivation_get_code_confirm" module="frontEnd"><![CDATA[Are you sure you want to send a new code?]]></phrase>
+        <phrase key="smsActivation_regenerated" module="frontEnd"><![CDATA[A new code has been sent to your phone number <b>{number}</b>, <br />please copy the code and paste it in the verification field.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_late" module="frontEnd"><![CDATA[Verify Account Later]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_success" module="admin"><![CDATA[The account has been successfully verified.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_error" module="admin"><![CDATA[Failed to verify the account.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_notice_activate" module="admin"><![CDATA[Are you sure you want to verify the account?]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_rest" module="admin"><![CDATA[REST API]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_http" module="admin"><![CDATA[HTTP API]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_rest_error" module="frontEnd"><![CDATA[Failed to send an SMS; please contact Flynax helpdesk.]]></phrase>
+        <phrase version="2.2.0" key="smsActication_meesage_sent_text_fail" module="frontEnd"><![CDATA[Failed to send an SMS to {phone}; please contact the Administrator.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_has_unverified_accounts" module="admin"><![CDATA[Accounts with non-verified phone numbers have been found; follow {link} to manage them.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_deactivate" module="admin"><![CDATA[Disable]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_send_notify_success" module="admin"><![CDATA[Notifications about account status being changed to unverified have been emailed to users.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_send_notify_fail" module="admin"><![CDATA[Failed to send an SMS; please contact Flynax helpdesk.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_activate_exists" module="admin"><![CDATA[After installation of the plugin, {count} accounts with non-verified phone numbers have been found. You can:<br /><br /><ul style="padding: 0px 0px 0px 20px;"><li style="list-style: circle;">Keep the accounts enabled by clicking "Keep Enabled".</li><li style="list-style: circle;">Disable accounts by clicking "Disable"; an email will be sent to every account instructing users to verify their counts with SMS.</li></ul>]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_activate_exists_success" module="admin"><![CDATA[The accounts have been successfully verified.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_activate_exists_fail" module="admin"><![CDATA[Failed to verify the accounts.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_status" module="admin"><![CDATA[SMS Verification]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_popup_title" module="admin"><![CDATA[SMS Verification]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_keep_active" module="admin"><![CDATA[Keep Enabled]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_profile" module="admin"><![CDATA[My Profile]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_progress" module="admin"><![CDATA[Progress:]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_reset_attempts" module="admin"><![CDATA[Reset number of attempts]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_attempts_limit_exceeded" module="frontEnd"><![CDATA[You've run out of attempts to send SMS; please contact the Administrator.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_reset_attempts_success" module="admin"><![CDATA[You've successfully reset the number of attempts to send SMS.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_reset_attempts_fail" module="admin"><![CDATA[Failed to reset the number of attempts to send SMS.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_account_phone_exist" module="frontEnd"><![CDATA[The {phone} number is already in use by another account.]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_notice_reset_attempts" module="admin"><![CDATA[Are you sure you want to reset the number of attempts to send SMS?]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_confirm_change_number" module="frontEnd"><![CDATA[After changing the phone number you will need to verify it again. Are you sure you want to proceed?]]></phrase>
+        <phrase version="2.2.0" key="smsActivation_need_settings" module="admin"><![CDATA[The Plugin is not configured; do you want to proceed to the settings?]]></phrase>
+    </phrases>
+
+    <emails>
+        <email version="2.2.0" key="smsActivation_deactivate_account" subject="Your account disabled" type="html">
+            <![CDATA[
+                Hello {name},<br />
+                Your account has been disabled. To get it enabled you'll need to verify it with an SMS code. 
+                Go to {profile} and enter the code you'll get in an SMS.
+                ______________________________
+                Thank you, 
+                {site_name}
+            ]]>
+        </email>
+    </emails>
+
+    <configs key="smsActivation_group" name="SMS Verification">
+        <![CDATA[]]>
+        <config key="sms_activation_general" name="Plugin Settings" values="" type="divider"><![CDATA[]]></config>
+        <config key="sms_activation_module" name="SMS verification module" values="" type="bool"><![CDATA[1]]></config>
+        <config version="2.2.0" key="sms_activation_phone_field" name="Phone number field on registration form" description="Select the phone number field that you use in the registration form." type="select"><![CDATA[phone]]></config>
+        <config version="2.2.0" key="sms_activation_phone_field_listing" name="Phone number field on listing form" description="Select the option if you enabled 'posting ads without signing up'." type="select"><![CDATA[phone]]></config>
+        <config key="sms_activation_code_length" name="Verification code length" values="" type="text" validate="int"><![CDATA[4]]></config>
+        <config key="sms_activation_account_divider" name="Clickatell Account Details" values="" type="divider"><![CDATA[]]></config>
+        <config version="2.2.0" key="sms_activation_method" name="Method" values="rest,http" type="select"><![CDATA[rest]]></config>
+        <config version="2.2.0" key="sms_activation_api_key" name="API Key" values="" type="text"><![CDATA[]]></config>
+        <config version="2.2.0" key="sms_activation_late_confirm" name="Delayed verification" values="" type="bool"><![CDATA[1]]></config>
+        <config version="2.2.0" key="sms_activation_count_attempts" name="Number of attempts to send SMS" values="" type="text"><![CDATA[3]]></config>
+        <config version="2.2.0" key="sms_activation_activate_exists" name="Activate exists accounts" values="" type="hide"><![CDATA[1]]></config>
+    </configs>
+
+    <updates>
+        <update version="2.0.1" files="account_activation.inc.php,rlSmsActivation.class.php"><![CDATA[]]></update>
+        <update version="2.0.2" files="rlSmsActivation.class.php"><![CDATA[]]></update>
+        <update version="2.0.3" files=""><![CDATA[]]></update>
+        <update version="2.1.0" files="rlInstall.class.php,rlSmsActivation.class.php,step.tpl"><![CDATA[]]></update>
+        <update version="2.2.0" files="rlInstall.class.php,rlSmsActivation.class.php,step.tpl,step_add_listing.tpl,phone.tpl,tab.tpl,static/style.css,static/.htaccess,.htaccess"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Install', null, 'smsActivation');
+            $GLOBALS['rlInstall']->update220();
+        ]]></update>
+        <update version="2.2.1" files="rlInstall.class.php"><![CDATA[
+            $GLOBALS['reefless']->loadClass('Install', null, 'smsActivation');
+            $GLOBALS['rlInstall']->update221();
+        ]]></update>
+    </updates>
+
+    <uninstall><![CDATA[
+        $GLOBALS['reefless']->loadClass('Install', null, 'smsActivation');
+        $GLOBALS['rlInstall']->uninstall();
+    ]]></uninstall>
+</plugin>
